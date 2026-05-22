@@ -1,0 +1,37 @@
+<article class="comercio-card">
+
+    <div class="comercio-card__image">
+        <img [src]="comercio.imagenUrl" [alt]="comercio.nombre">
+    </div>
+
+    <div class="comercio-card__content">
+
+        <div class="comercio-card__meta">
+
+            <span>
+                {{ comercio.categoria || 'Comercio local' }}
+            </span>
+
+            <span class="status" [class.status--closed]="!comercio.activo">
+
+                {{ comercio.activo ? 'Abierto' : 'Cerrado' }}
+
+            </span>
+
+        </div>
+
+        <h3>{{ comercio.nombre }}</h3>
+
+        <p>{{ comercio.direccion }}</p>
+
+        <small>{{ comercio.telefono }}</small>
+
+        <button>
+            <a class="comercio-card__button" [routerLink]="['/comercios', comercio.id]">
+                Ver ficha
+            </a>
+        </button>
+
+    </div>
+
+</article>

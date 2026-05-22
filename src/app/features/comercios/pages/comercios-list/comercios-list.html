@@ -1,0 +1,41 @@
+<section class="comercios-page">
+
+  <div class="comercios-page__header">
+
+    <span class="section-kicker">
+      Directorio local
+    </span>
+
+    <h1>Comercios del barrio</h1>
+
+    <p>
+      Descubre negocios, tiendas y servicios cercanos.
+    </p>
+
+  </div>
+
+  <div class="comercios-page__filters">
+
+    <input type="text" placeholder="Buscar comercio..." />
+
+    <select>
+      <option>Todas las categorías</option>
+      <option>Hostelería</option>
+      <option>Servicios</option>
+      <option>Comercio</option>
+    </select>
+
+  </div>
+
+  <div class="comercios-page__grid">
+
+    @for (comercio of comercios; track comercio.id) {
+
+      <app-comercio-card
+        [comercio]="comercio">
+      </app-comercio-card>
+
+    }
+
+  </div>
+</section>

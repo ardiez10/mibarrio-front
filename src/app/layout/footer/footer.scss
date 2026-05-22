@@ -1,8 +1,25 @@
 .footer {
-  min-height: 180px;
-  padding: 40px 48px;
   background: #111827;
   color: #f9fafb;
+}
+
+.footer__inner {
+  max-width: 90rem;
+  min-height: 180px;
+
+  margin: 0 auto;
+
+  padding: 2.5rem clamp(1rem, 3vw, 2rem);
+
   display: flex;
   justify-content: space-between;
+  gap: 3rem;
+
+  box-sizing: border-box;
+}
+
+@media (max-width: 48rem) {
+  .footer__inner {
+    flex-direction: column;
+  }
 }

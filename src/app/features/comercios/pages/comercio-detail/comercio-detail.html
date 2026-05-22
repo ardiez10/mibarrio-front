@@ -1,0 +1,49 @@
+<section class="comercio-detail">
+
+  <a class="back-link" routerLink="/comercios">
+    ← Volver a comercios
+  </a>
+
+  @if (comercio) {
+
+    <div class="comercio-detail__hero">
+      <img [src]="comercio.imagenUrl" [alt]="comercio.nombre">
+    </div>
+
+    <div class="comercio-detail__content">
+
+      <div class="comercio-detail__main">
+        <span class="section-kicker">
+          {{ comercio.categoria || 'Comercio local' }}
+        </span>
+
+        <h1>{{ comercio.nombre }}</h1>
+
+        <p>{{ comercio.direccion }}</p>
+
+        <p>{{ comercio.telefono }}</p>
+      </div>
+
+      <aside class="comercio-detail__sidebar">
+        <h3>Información</h3>
+
+        <p>
+          Estado:
+          <strong>{{ comercio.activo ? 'Abierto' : 'Cerrado' }}</strong>
+        </p>
+
+        <p>
+          Categoría:
+          <strong>{{ comercio.categoria || 'Comercio local' }}</strong>
+        </p>
+      </aside>
+
+    </div>
+
+  } @else {
+
+    <p>No se ha encontrado el comercio.</p>
+
+  }
+
+</section>

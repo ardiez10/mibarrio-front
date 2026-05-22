@@ -1,29 +1,26 @@
 <header class="navbar">
-  <a class="navbar__logo" routerLink="/">miBarrio</a>
+    <div class="navbar__inner">
+        <a class="navbar__logo" routerLink="/">miBarrio</a>
 
-  <nav class="navbar__links">
-    <a routerLink="/">Inicio</a>
-    <a routerLink="/comercios">Comercios</a>
-    <a routerLink="/ofertas">Ofertas</a>
-    <a routerLink="/noticias">Noticias</a>
-  </nav>
+        <nav class="navbar__links">
+            <a routerLink="/">Inicio</a>
+            <a routerLink="/comercios">Comercios</a>
+            <a routerLink="/ofertas">Ofertas</a>
+            <a routerLink="/noticias">Noticias</a>
+        </nav>
 
-  <a class="navbar__login" routerLink="/login">Acceder</a>
+        <a class="navbar__login" routerLink="/login">Acceder</a>
 
-  <button
-    mat-icon-button
-    class="navbar__menu"
-    type="button"
-    aria-label="Abrir menú"
-    (click)="toggleMenu()">
-    <mat-icon>menu</mat-icon>
-  </button>
+        <button mat-icon-button class="navbar__menu" type="button" aria-label="Abrir menú" (click)="toggleMenu()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
 </header>
 
 <nav class="mobile-menu" [class.mobile-menu--open]="menuOpen">
-  <a routerLink="/" (click)="closeMenu()">Inicio</a>
-  <a routerLink="/comercios" (click)="closeMenu()">Comercios</a>
-  <a routerLink="/ofertas" (click)="closeMenu()">Ofertas</a>
-  <a routerLink="/noticias" (click)="closeMenu()">Noticias</a>
-  <a routerLink="/login" (click)="closeMenu()">Acceder</a>
+    <a routerLink="/" (click)="closeMenu()">Inicio</a>
+    <a routerLink="/comercios" (click)="closeMenu()">Comercios</a>
+    <a routerLink="/ofertas" (click)="closeMenu()">Ofertas</a>
+    <a routerLink="/noticias" (click)="closeMenu()">Noticias</a>
+    <a routerLink="/login" (click)="closeMenu()">Acceder</a>
 </nav>
