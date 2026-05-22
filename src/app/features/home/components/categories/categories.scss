@@ -1,0 +1,37 @@
+.categories {
+  padding: 0 48px 56px;
+  background: #f9fafb;
+}
+
+.categories__grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  padding: 28px;
+  border-radius: 18px;
+  background: white;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.category-card span {
+  font-size: 2rem;
+}
+
+.category-card p {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+@media (max-width: 768px) {
+
+  .categories__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

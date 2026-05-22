@@ -1,0 +1,31 @@
+<section class="news">
+
+  <div class="section-header">
+    <div>
+      <span class="section-kicker">Noticias</span>
+      <h2>Actualidad del barrio</h2>
+    </div>
+  </div>
+
+  <div class="news__grid">
+
+    @for (noticia of noticias; track noticia.id) {
+
+      <article class="news-card">
+
+        <span>Noticias</span>
+
+        <h3>{{ noticia.titulo }}</h3>
+
+        <p>{{ noticia.contenido }}</p>
+
+        <a href="#">
+          Leer más →
+        </a>
+
+      </article>
+    }
+
+  </div>
+
+</section>
