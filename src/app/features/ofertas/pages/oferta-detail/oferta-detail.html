@@ -1,0 +1,44 @@
+<section class="oferta-detail">
+
+  <a class="back-link" routerLink="/ofertas">
+    ← Volver a ofertas
+  </a>
+
+  @if (oferta) {
+
+    <div class="oferta-detail__hero">
+      <img [src]="oferta.imagen_url" [alt]="oferta.titulo">
+    </div>
+
+    <div class="oferta-detail__content">
+
+      <div>
+        <span class="section-kicker">
+          {{ oferta.categoria || 'Oferta local' }}
+        </span>
+
+        <h1>{{ oferta.titulo }}</h1>
+
+        <p>{{ oferta.descripcion }}</p>
+
+        <p>
+          Comercio:
+          <strong>{{ oferta.comercio_nombre }}</strong>
+        </p>
+      </div>
+
+      <aside class="oferta-detail__sidebar">
+        <h3>Estado</h3>
+
+        <p>
+          <strong>{{ oferta.activo ? 'Oferta activa' : 'Oferta cerrada' }}</strong>
+        </p>
+      </aside>
+
+    </div>
+
+  } @else {
+    <p>No se ha encontrado la oferta.</p>
+  }
+
+</section>

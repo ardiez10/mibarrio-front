@@ -1,37 +1,26 @@
 <section class="offers">
-
   <div class="section-header">
     <div>
       <span class="section-kicker">Ofertas destacadas</span>
       <h2>Promociones activas en tu barrio</h2>
     </div>
+
+    <a routerLink="/ofertas">Ver todas</a>
   </div>
 
   <div class="offers__grid">
-
     @for (oferta of ofertas; track oferta.id) {
+    <article class="offer-card">
+      <span class="offer-card__badge">Abierta</span>
 
-      <article class="offer-card">
+      <h3>{{ oferta.titulo }}</h3>
 
-        <span
-          class="offer-card__badge"
-          [class.offer-card__badge--closed]="!oferta.activa">
+      <p>{{ oferta.descripcion }}</p>
 
-          {{ oferta.activa ? 'Abierta' : 'Cerrada' }}
-
-        </span>
-
-        <h3>{{ oferta.titulo }}</h3>
-
-        <p>{{ oferta.descripcion }}</p>
-
-        <button>
-          Ver comercio
-        </button>
-
-      </article>
+      <a class="offer-card__button" [routerLink]="['/ofertas', oferta.id]">
+        Ver oferta
+      </a>
+    </article>
     }
-
   </div>
-
 </section>

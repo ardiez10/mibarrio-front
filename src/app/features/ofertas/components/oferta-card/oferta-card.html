@@ -1,0 +1,29 @@
+<article class="oferta-card">
+
+  <div class="oferta-card__image">
+    <img [src]="oferta.imagen_url" [alt]="oferta.titulo">
+  </div>
+
+  <div class="oferta-card__content">
+
+    <div class="oferta-card__meta">
+      <span>{{ oferta.categoria || 'Oferta local' }}</span>
+
+      <span class="status" [class.status--closed]="!oferta.activo">
+        {{ oferta.activo ? 'Abierta' : 'Cerrada' }}
+      </span>
+    </div>
+
+    <h3>{{ oferta.titulo }}</h3>
+
+    <p>{{ oferta.descripcion }}</p>
+
+    <small>{{ oferta.comercio_nombre }}</small>
+
+    <a class="oferta-card__button" [routerLink]="['/ofertas', oferta.id]">
+      Ver oferta
+    </a>
+
+  </div>
+
+</article>

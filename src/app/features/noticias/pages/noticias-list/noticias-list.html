@@ -1,0 +1,15 @@
+<section class="noticias-page">
+  <div class="noticias-page__header">
+    <span class="section-kicker">Actualidad local</span>
+
+    <h1>Noticias del barrio</h1>
+
+    <p>Información relevante, eventos y novedades del entorno cercano.</p>
+  </div>
+
+  <div class="noticias-page__grid">
+    @for (noticia of noticias; track noticia.id) {
+      <app-noticia-card [noticia]="noticia"></app-noticia-card>
+    }
+  </div>
+</section>

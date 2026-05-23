@@ -1,0 +1,24 @@
+<article class="noticia-card">
+
+  <div class="noticia-card__image">
+    <img [src]="noticia.imagen_url" [alt]="noticia.titulo">
+  </div>
+
+  <div class="noticia-card__content">
+
+    <div class="noticia-card__meta">
+      <span>{{ noticia.fuente || 'Noticia local' }}</span>
+      <span>{{ noticia.fecha_publicacion }}</span>
+    </div>
+
+    <h3>{{ noticia.titulo }}</h3>
+
+    <p>{{ noticia.descripcion }}</p>
+
+    <a class="noticia-card__button" [routerLink]="['/noticias', noticia.id]">
+      Leer más
+    </a>
+
+  </div>
+
+</article>

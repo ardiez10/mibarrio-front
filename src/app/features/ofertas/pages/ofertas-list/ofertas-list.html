@@ -1,0 +1,30 @@
+<section class="ofertas-page">
+
+  <div class="ofertas-page__header">
+    <span class="section-kicker">Promociones locales</span>
+
+    <h1>Ofertas del barrio</h1>
+
+    <p>
+      Descubre promociones activas de comercios cercanos.
+    </p>
+  </div>
+
+  <div class="ofertas-page__filters">
+    <input type="text" placeholder="Buscar oferta..." />
+
+    <select>
+      <option>Todas las categorías</option>
+      <option>Alimentación</option>
+      <option>Hostelería</option>
+      <option>Librería</option>
+    </select>
+  </div>
+
+  <div class="ofertas-page__grid">
+    @for (oferta of ofertas; track oferta.id) {
+      <app-oferta-card [oferta]="oferta"></app-oferta-card>
+    }
+  </div>
+
+</section>

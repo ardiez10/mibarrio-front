@@ -1,0 +1,58 @@
+.noticia-detail {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.noticia-detail__hero {
+  height: clamp(14rem, 30vw, 24rem);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #dbeafe;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.noticia-detail__content {
+  max-width: 48rem;
+
+  h1 {
+    margin: 0.75rem 0;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    line-height: 1.05;
+    color: #111827;
+  }
+
+  p {
+    color: #6b7280;
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+}
+
+.section-kicker {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.external-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+}

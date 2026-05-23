@@ -39,7 +39,7 @@ export class Api {
         direccion: 'Rua Real 15',
         telefono: '981333333',
         activo: true,
-        categoria: 'Librería',        
+        categoria: 'Librería',
         imagenUrl: '/images/comercio-placeholder.png'
       },
       {
@@ -48,7 +48,7 @@ export class Api {
         direccion: 'Praza Galicia 3',
         telefono: '981444444',
         activo: true,
-        categoria: 'Floristería',     
+        categoria: 'Floristería',
         imagenUrl: '/images/comercio-placeholder.png'
       },
       {
@@ -57,7 +57,7 @@ export class Api {
         direccion: 'Calle Sol 22',
         telefono: '981555555',
         activo: false,
-        categoria: 'Moda',     
+        categoria: 'Moda',
         imagenUrl: '/images/comercio-placeholder.png'
       },
       {
@@ -66,7 +66,7 @@ export class Api {
         direccion: 'Rua Nova 41',
         telefono: '981666666',
         activo: true,
-        categoria: 'Electrónica',     
+        categoria: 'Electrónica',
         imagenUrl: '/images/comercio-placeholder.png'
       }
     ]);
@@ -79,36 +79,94 @@ export class Api {
   }
 
   getOfertas(): Observable<Oferta[]> {
-
     return of([
       {
         id: 1,
         titulo: '2x1 en desayunos',
-        descripcion: 'Solo esta semana',
-        activa: true
+        descripcion: 'Disfruta de dos desayunos por el precio de uno durante esta semana.',
+        activo: true,
+        comercio_id: 2,
+        comercio_nombre: 'Café Os Mallos',
+        categoria: 'Hostelería',
+        imagen_url: '/images/comercio-placeholder.png'
       },
       {
         id: 2,
-        titulo: 'Descuento en peluquería',
-        descripcion: '15% para nuevos clientes',
-        activa: false
+        titulo: '15% en productos artesanales',
+        descripcion: 'Descuento especial en productos seleccionados de panadería.',
+        activo: true,
+        comercio_id: 1,
+        comercio_nombre: 'Panadería Central',
+        categoria: 'Alimentación',
+        imagen_url: '/images/comercio-placeholder.png'
+      },
+      {
+        id: 3,
+        titulo: 'Descuento en libros infantiles',
+        descripcion: 'Promoción para fomentar la lectura entre los más pequeños.',
+        activo: false,
+        comercio_id: 3,
+        comercio_nombre: 'Librería Norte',
+        categoria: 'Librería',
+        imagen_url: '/images/comercio-placeholder.png'
+      },
+      {
+        id: 4,
+        titulo: 'Descuento en libros infantiles',
+        descripcion: 'Promoción para fomentar la lectura entre los más pequeños.',
+        activo: false,
+        comercio_id: 3,
+        comercio_nombre: 'Librería Norte',
+        categoria: 'Librería',
+        imagen_url: '/images/comercio-placeholder.png'
       }
     ]);
   }
 
-  getNoticias(): Observable<Noticia[]> {
+  getOfertaById(id: number): Observable<Oferta | undefined> {
+    return this.getOfertas().pipe(
+      map(ofertas => ofertas.find(oferta => oferta.id === id))
+    );
+  }
 
+  getNoticias(): Observable<Noticia[]> {
     return of([
       {
         id: 1,
-        titulo: 'Nuevo evento vecinal',
-        contenido: 'Este sábado habrá actividades culturales en el barrio.'
+        titulo: 'Nueva campaña de apoyo al comercio local',
+        descripcion: 'El barrio impulsa una iniciativa para dar visibilidad a pequeños negocios y fomentar el consumo de proximidad.',
+        fuente: 'Diario Local',
+        url: 'https://example.com/noticia-1',
+        fecha_publicacion: '2026-05-20',
+        imagen_url: '/images/comercio-placeholder.png',
+        activo: true
       },
       {
         id: 2,
-        titulo: 'Campaña comercio local',
-        contenido: 'Nueva iniciativa para apoyar negocios de proximidad.'
+        titulo: 'Actividades culturales este fin de semana',
+        descripcion: 'Vecinos y asociaciones preparan una programación especial con música, talleres y actividades familiares.',
+        fuente: 'Noticias Barrio',
+        url: 'https://example.com/noticia-2',
+        fecha_publicacion: '2026-05-18',
+        imagen_url: '/images/comercio-placeholder.png',
+        activo: true
+      },
+      {
+        id: 3,
+        titulo: 'Mejoras en la plaza principal del barrio',
+        descripcion: 'El entorno contará con nuevas zonas verdes, bancos y espacios de encuentro para los vecinos.',
+        fuente: 'Vigo Actualidad',
+        url: 'https://example.com/noticia-3',
+        fecha_publicacion: '2026-05-15',
+        imagen_url: '/images/comercio-placeholder.png',
+        activo: true
       }
     ]);
+  }
+
+  getNoticiaById(id: number): Observable<Noticia | undefined> {
+    return this.getNoticias().pipe(
+      map(noticias => noticias.find(noticia => noticia.id === id))
+    );
   }
 }

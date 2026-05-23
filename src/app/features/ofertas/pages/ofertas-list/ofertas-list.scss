@@ -1,0 +1,103 @@
+.ofertas-page {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+  background: #f9fafb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.ofertas-page__header,
+.ofertas-page__filters,
+.ofertas-page__grid {
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.ofertas-page__header {
+  margin-bottom: 2.5rem;
+
+  h1 {
+    margin: 0.75rem 0;
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    line-height: 1.05;
+    color: #111827;
+  }
+
+  p {
+    color: #6b7280;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+  }
+}
+
+.section-kicker {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.ofertas-page__filters {
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  input,
+  select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: white;
+  }
+}
+
+.ofertas-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 2rem;
+}
+
+app-oferta-card {
+  width: 100%;
+}
+
+@media (max-width: 40rem) {
+  .ofertas-page {
+    padding: 2rem 1rem;
+  }
+
+  .ofertas-page__header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+  }
+
+  .ofertas-page__filters {
+    grid-template-columns: 1fr;
+    margin-bottom: 2rem;
+  }
+
+  .ofertas-page__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  app-oferta-card {
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 30rem) {
+  .ofertas-page {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .ofertas-page__header h1 {
+    font-size: 2rem;
+  }
+}

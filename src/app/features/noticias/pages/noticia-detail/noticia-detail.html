@@ -1,0 +1,23 @@
+<section class="noticia-detail">
+  <a class="back-link" routerLink="/noticias">← Volver a noticias</a>
+
+  @if (noticia) {
+    <div class="noticia-detail__hero">
+      <img [src]="noticia.imagen_url" [alt]="noticia.titulo">
+    </div>
+
+    <div class="noticia-detail__content">
+      <span class="section-kicker">{{ noticia.fuente }}</span>
+
+      <h1>{{ noticia.titulo }}</h1>
+
+      <p>{{ noticia.descripcion }}</p>
+
+      <a class="external-link" [href]="noticia.url" target="_blank">
+        Leer noticia original
+      </a>
+    </div>
+  } @else {
+    <p>No se ha encontrado la noticia.</p>
+  }
+</section>
