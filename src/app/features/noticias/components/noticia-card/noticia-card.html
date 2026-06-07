@@ -1,14 +1,17 @@
 <article class="noticia-card">
 
   <div class="noticia-card__image">
-    <img [src]="noticia.imagen_url" [alt]="noticia.titulo">
+    <img
+      [src]="noticia.imagenUrl || noticia.imagen_url || '/images/comercio-placeholder.png'"
+      [alt]="noticia.titulo"
+      (error)="setFallbackImage($event)">
   </div>
 
   <div class="noticia-card__content">
 
     <div class="noticia-card__meta">
       <span>{{ noticia.fuente || 'Noticia local' }}</span>
-      <span>{{ noticia.fecha_publicacion }}</span>
+      <span>{{ noticia.fechaPublicacion || noticia.fecha_publicacion }}</span>
     </div>
 
     <h3>{{ noticia.titulo }}</h3>

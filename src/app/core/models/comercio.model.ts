@@ -4,7 +4,13 @@ export interface Comercio {
   direccion?: string;
   telefono?: string;
   activo?: boolean;
+  categoriaId?: number;
   categoria?: string;
-  descripcion?: string;
   imagenUrl?: string;
+  usuarioId?: number;
+  usuarioNombre?: string;
+  usuarioEmail?: string;
+  estado?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

@@ -1,0 +1,28 @@
+<div class="admin-layout">
+
+  <aside class="admin-sidebar">
+    <h2>miBarrio</h2>
+
+    <nav>
+      <a routerLink="/admin" routerLinkActive="admin-sidebar__link--active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/admin/solicitudes" routerLinkActive="admin-sidebar__link--active">Solicitudes</a>
+      <a routerLink="/admin/usuarios" routerLinkActive="admin-sidebar__link--active">Usuarios</a>
+      <a routerLink="/admin/comercios" routerLinkActive="admin-sidebar__link--active">Comercios</a>
+      <a routerLink="/admin/ofertas" routerLinkActive="admin-sidebar__link--active">Ofertas</a>
+      <a routerLink="/admin/noticias" routerLinkActive="admin-sidebar__link--active">Noticias</a>
+      <a routerLink="/">Volver a la web</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <h1>Panel administrador</h1>
+      <button type="button" class="admin-topbar__logout" (click)="logout()">Salir</button>
+    </header>
+
+    <section class="admin-content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+
+</div>

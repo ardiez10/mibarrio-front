@@ -11,20 +11,48 @@
   </div>
 
   <div class="ofertas-page__filters">
-    <input type="text" placeholder="Buscar oferta..." />
+    <input
+      type="text"
+      placeholder="Buscar oferta..."
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="applyFilters()" />
 
-    <select>
-      <option>Todas las categorías</option>
-      <option>Alimentación</option>
-      <option>Hostelería</option>
-      <option>Librería</option>
+    <select
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="applyFilters()">
+      <option value="">Todas las categorías</option>
+
+      @for (categoriaNombre of availableCategoryNames; track categoriaNombre) {
+        <option [value]="categoriaNombre">{{ categoriaNombre }}</option>
+      }
     </select>
   </div>
 
-  <div class="ofertas-page__grid">
-    @for (oferta of ofertas; track oferta.id) {
-      <app-oferta-card [oferta]="oferta"></app-oferta-card>
-    }
-  </div>
+  @if (hasActiveFilters) {
+    <div class="ofertas-page__filters-actions">
+      <button type="button" (click)="clearFilters()">
+        Limpiar filtros
+      </button>
+    </div>
+  }
+
+  @if (loading) {
+    <p class="ofertas-page__state">Cargando ofertas...</p>
+  } @else if (error) {
+    <div class="ofertas-page__state ofertas-page__state--error">
+      <p>No se han podido cargar las ofertas.</p>
+      <button type="button" (click)="loadOfertas()">Reintentar</button>
+    </div>
+  } @else if (ofertas.length === 0) {
+    <p class="ofertas-page__state">Todavía no hay ofertas publicadas.</p>
+  } @else if (filteredOfertas.length === 0) {
+    <p class="ofertas-page__state">No hay ofertas que coincidan con esos filtros.</p>
+  } @else {
+    <div class="ofertas-page__grid">
+      @for (oferta of filteredOfertas; track oferta.id) {
+        <app-oferta-card [oferta]="oferta"></app-oferta-card>
+      }
+    </div>
+  }
 
 </section>

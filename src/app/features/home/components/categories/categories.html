@@ -2,10 +2,15 @@
   <div class="categories__grid">
 
     @for (category of categories; track category.name) {
-      <article class="category-card">
-        <span>{{ category.icon }}</span>
+      <a
+        class="category-card"
+        routerLink="/comercios"
+        [queryParams]="{ categoria: category.name }">
+        <span class="category-card__icon" aria-hidden="true">
+          <mat-icon>{{ category.icon }}</mat-icon>
+        </span>
         <p>{{ category.name }}</p>
-      </article>
+      </a>
     }
 
   </div>

@@ -4,10 +4,21 @@
     ← Volver a ofertas
   </a>
 
-  @if (oferta) {
+  @if (loading) {
+
+    <p>Cargando oferta...</p>
+
+  } @else if (error) {
+
+    <p>No se ha podido cargar la oferta.</p>
+
+  } @else if (oferta) {
 
     <div class="oferta-detail__hero">
-      <img [src]="oferta.imagen_url" [alt]="oferta.titulo">
+      <img
+        [src]="oferta.imagen_url || '/images/comercio-placeholder.png'"
+        [alt]="oferta.titulo"
+        (error)="setFallbackImage($event)">
     </div>
 
     <div class="oferta-detail__content">
@@ -23,15 +34,23 @@
 
         <p>
           Comercio:
-          <strong>{{ oferta.comercio_nombre }}</strong>
+          @if (comercioId) {
+            <a
+              class="oferta-detail__commerce-link"
+              [routerLink]="['/comercios', comercioId]">
+              {{ comercioNombre }}
+            </a>
+          } @else {
+            <strong>{{ comercioNombre }}</strong>
+          }
         </p>
       </div>
 
       <aside class="oferta-detail__sidebar">
-        <h3>Estado</h3>
+        <h3>Disponible hasta</h3>
 
         <p>
-          <strong>{{ oferta.activo ? 'Oferta activa' : 'Oferta cerrada' }}</strong>
+          <strong>{{ fechaFinFormateada }}</strong>
         </p>
       </aside>
 

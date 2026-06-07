@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .noticia-card {
   background: white;
   border: 1px solid #e5e7eb;
@@ -51,4 +55,10 @@
   color: #0f172a;
   text-decoration: none;
   font-weight: 700;
+  transition: transform 0.18s ease, color 0.18s ease;
+
+  &:hover {
+    color: #1d4ed8;
+    transform: translateX(0.14rem);
+  }
 }

@@ -1,0 +1,111 @@
+.admin-ofertas-form {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background: #ffffff;
+}
+
+.admin-ofertas-form__header {
+  margin-bottom: 1rem;
+
+  h3 {
+    margin: 0 0 0.35rem;
+    color: #111827;
+  }
+
+  p {
+    margin: 0;
+    color: #6b7280;
+  }
+}
+
+.admin-ofertas-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  label {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  span {
+    color: #374151;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    font: inherit;
+    box-sizing: border-box;
+    background: #ffffff;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+}
+
+.admin-ofertas-form__full,
+.admin-ofertas-form__error,
+.admin-ofertas-form__success,
+.admin-ofertas-form__actions {
+  grid-column: 1 / -1;
+}
+
+.admin-ofertas-form__error,
+.admin-ofertas-form__success {
+  margin: 0;
+  font-weight: 600;
+}
+
+.admin-ofertas-form__error {
+  color: #b91c1c;
+}
+
+.admin-ofertas-form__success {
+  color: #166534;
+}
+
+.admin-ofertas-form__actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.95rem 1.5rem;
+  border: 0;
+  border-radius: 1rem;
+  background: #0f172a;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.admin-ofertas-form__actions button:hover:not(:disabled) {
+  background: #1e293b;
+  box-shadow: 0 0.9rem 1.8rem rgba(15, 23, 42, 0.16);
+  transform: translateY(-1px);
+}
+
+.admin-ofertas-form__actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 48rem) {
+  .admin-ofertas-form__grid {
+    grid-template-columns: 1fr;
+  }
+}

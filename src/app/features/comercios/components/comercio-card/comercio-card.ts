@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 import { Comercio } from '../../../../core/models/comercio.model';
 
@@ -11,4 +11,8 @@ import { Comercio } from '../../../../core/models/comercio.model';
 })
 export class ComercioCard {
   @Input({ required: true }) comercio!: Comercio;
+
+  setFallbackImage(event: Event): void {
+    (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
 }

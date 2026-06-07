@@ -7,9 +7,20 @@
     <p>Información relevante, eventos y novedades del entorno cercano.</p>
   </div>
 
-  <div class="noticias-page__grid">
-    @for (noticia of noticias; track noticia.id) {
-      <app-noticia-card [noticia]="noticia"></app-noticia-card>
-    }
-  </div>
+  @if (loading) {
+    <p class="noticias-page__state">Cargando noticias...</p>
+  } @else if (error) {
+    <div class="noticias-page__state noticias-page__state--error">
+      <p>No se han podido cargar las noticias.</p>
+      <button type="button" (click)="loadNoticias()">Reintentar</button>
+    </div>
+  } @else if (noticias.length === 0) {
+    <p class="noticias-page__state">Todavía no hay noticias publicadas.</p>
+  } @else {
+    <div class="noticias-page__grid">
+      @for (noticia of noticias; track noticia.id) {
+        <app-noticia-card [noticia]="noticia"></app-noticia-card>
+      }
+    </div>
+  }
 </section>

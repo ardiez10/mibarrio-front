@@ -1,172 +1,130 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
+
+import { LoginRequest, LoginResponse, SignupRequest, SignupResponse } from '../models/auth.model';
 import { Comercio } from '../models/comercio.model';
-import { Oferta } from '../models/oferta.model';
 import { Noticia } from '../models/noticia.model';
+import { Oferta } from '../models/oferta.model';
+import { Categoria } from '../models/categoria.model';
+import { Usuario } from '../models/usuario.model';
 
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Api {
+  
+  private readonly API_URL = 'http://localhost:8080/api';
+  
+  constructor(private http: HttpClient) {}
 
+  login(payload: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.API_URL}/auth/login`, payload);
+  }
+
+  signup(payload: SignupRequest): Observable<SignupResponse> {
+    return this.http.post<SignupResponse>(`${this.API_URL}/auth/signup`, payload);
+  }
+  
   getComercios(): Observable<Comercio[]> {
-
-    return of([
-      {
-        id: 1,
-        nombre: 'Panadería Central',
-        direccion: 'Calle Mayor 12',
-        telefono: '981111111',
-        activo: true,
-        categoria: 'Alimentación',
-        imagenUrl: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 2,
-        nombre: 'Café Os Mallos',
-        direccion: 'Avenida Principal 8',
-        telefono: '981222222',
-        activo: false,
-        categoria: 'Hostelería',
-        imagenUrl: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 3,
-        nombre: 'Librería Norte',
-        direccion: 'Rua Real 15',
-        telefono: '981333333',
-        activo: true,
-        categoria: 'Librería',
-        imagenUrl: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 4,
-        nombre: 'Floristería Alba',
-        direccion: 'Praza Galicia 3',
-        telefono: '981444444',
-        activo: true,
-        categoria: 'Floristería',
-        imagenUrl: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 5,
-        nombre: 'Moda Urbana',
-        direccion: 'Calle Sol 22',
-        telefono: '981555555',
-        activo: false,
-        categoria: 'Moda',
-        imagenUrl: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 6,
-        nombre: 'ElectroHogar',
-        direccion: 'Rua Nova 41',
-        telefono: '981666666',
-        activo: true,
-        categoria: 'Electrónica',
-        imagenUrl: '/images/comercio-placeholder.png'
-      }
-    ]);
+    return this.http.get<Comercio[]>(`${this.API_URL}/comercios`);
   }
 
-  getComercioById(id: number): Observable<Comercio | undefined> {
-    return this.getComercios().pipe(
-      map(comercios => comercios.find(comercio => comercio.id === id))
-    );
+  getComerciosPendientes(): Observable<Comercio[]> {
+    return this.http.get<Comercio[]>(`${this.API_URL}/comercios/pendientes`);
   }
-
+  
+  getComercioById(id: number): Observable<Comercio> {
+    return this.http.get<Comercio>(`${this.API_URL}/comercios/${id}`);
+  }
+  
   getOfertas(): Observable<Oferta[]> {
-    return of([
-      {
-        id: 1,
-        titulo: '2x1 en desayunos',
-        descripcion: 'Disfruta de dos desayunos por el precio de uno durante esta semana.',
-        activo: true,
-        comercio_id: 2,
-        comercio_nombre: 'Café Os Mallos',
-        categoria: 'Hostelería',
-        imagen_url: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 2,
-        titulo: '15% en productos artesanales',
-        descripcion: 'Descuento especial en productos seleccionados de panadería.',
-        activo: true,
-        comercio_id: 1,
-        comercio_nombre: 'Panadería Central',
-        categoria: 'Alimentación',
-        imagen_url: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 3,
-        titulo: 'Descuento en libros infantiles',
-        descripcion: 'Promoción para fomentar la lectura entre los más pequeños.',
-        activo: false,
-        comercio_id: 3,
-        comercio_nombre: 'Librería Norte',
-        categoria: 'Librería',
-        imagen_url: '/images/comercio-placeholder.png'
-      },
-      {
-        id: 4,
-        titulo: 'Descuento en libros infantiles',
-        descripcion: 'Promoción para fomentar la lectura entre los más pequeños.',
-        activo: false,
-        comercio_id: 3,
-        comercio_nombre: 'Librería Norte',
-        categoria: 'Librería',
-        imagen_url: '/images/comercio-placeholder.png'
-      }
-    ]);
+    return this.http.get<Oferta[]>(`${this.API_URL}/ofertas`);
+  }
+  
+  getOfertaById(id: number): Observable<Oferta> {
+    return this.http.get<Oferta>(`${this.API_URL}/ofertas/${id}`);
   }
 
-  getOfertaById(id: number): Observable<Oferta | undefined> {
-    return this.getOfertas().pipe(
-      map(ofertas => ofertas.find(oferta => oferta.id === id))
-    );
+  createOferta(comercioId: number, payload: {
+    titulo: string;
+    descripcion: string;
+    fechaFin: string;
+  }): Observable<Oferta> {
+    return this.http.post<Oferta>(`${this.API_URL}/ofertas/comercio/${comercioId}`, payload);
   }
 
+  updateOferta(id: number, payload: {
+    titulo: string;
+    descripcion: string;
+    fechaFin: string;
+  }): Observable<Oferta> {
+    return this.http.put<Oferta>(`${this.API_URL}/ofertas/${id}`, payload);
+  }
+
+  deleteOferta(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/ofertas/${id}`);
+  }
+  
   getNoticias(): Observable<Noticia[]> {
-    return of([
-      {
-        id: 1,
-        titulo: 'Nueva campaña de apoyo al comercio local',
-        descripcion: 'El barrio impulsa una iniciativa para dar visibilidad a pequeños negocios y fomentar el consumo de proximidad.',
-        fuente: 'Diario Local',
-        url: 'https://example.com/noticia-1',
-        fecha_publicacion: '2026-05-20',
-        imagen_url: '/images/comercio-placeholder.png',
-        activo: true
-      },
-      {
-        id: 2,
-        titulo: 'Actividades culturales este fin de semana',
-        descripcion: 'Vecinos y asociaciones preparan una programación especial con música, talleres y actividades familiares.',
-        fuente: 'Noticias Barrio',
-        url: 'https://example.com/noticia-2',
-        fecha_publicacion: '2026-05-18',
-        imagen_url: '/images/comercio-placeholder.png',
-        activo: true
-      },
-      {
-        id: 3,
-        titulo: 'Mejoras en la plaza principal del barrio',
-        descripcion: 'El entorno contará con nuevas zonas verdes, bancos y espacios de encuentro para los vecinos.',
-        fuente: 'Vigo Actualidad',
-        url: 'https://example.com/noticia-3',
-        fecha_publicacion: '2026-05-15',
-        imagen_url: '/images/comercio-placeholder.png',
-        activo: true
-      }
-    ]);
+    return this.http.get<Noticia[]>(`${this.API_URL}/noticias`);
+  }
+  
+  getNoticiaById(id: number): Observable<Noticia> {
+    return this.http.get<Noticia>(`${this.API_URL}/noticias/${id}`);
   }
 
-  getNoticiaById(id: number): Observable<Noticia | undefined> {
-    return this.getNoticias().pipe(
-      map(noticias => noticias.find(noticia => noticia.id === id))
-    );
+  getCategorias() {
+    return this.http.get<Categoria[]>(`${this.API_URL}/categorias`);
+  }
+
+  getUsuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.API_URL}/usuarios`);
+  }
+
+  getUsuariosPendientes(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.API_URL}/usuarios/pendientes`);
+  }
+
+  approveUsuario(id: number): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.API_URL}/usuarios/${id}/aprobar`, {});
+  }
+
+  rejectUsuario(id: number): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.API_URL}/usuarios/${id}/rechazar`, {});
+  }
+
+  createComercio(payload: {
+    nombre: string;
+    direccion: string;
+    telefono?: string;
+    categoriaId: number;
+    usuarioId: number;
+  }): Observable<Comercio> {
+    return this.http.post<Comercio>(`${this.API_URL}/comercios`, payload);
+  }
+
+  updateComercio(id: number, payload: {
+    nombre: string;
+    direccion: string;
+    telefono?: string;
+    categoriaId: number;
+    usuarioId: number;
+  }): Observable<Comercio> {
+    return this.http.put<Comercio>(`${this.API_URL}/comercios/${id}`, payload);
+  }
+
+  deleteComercio(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/comercios/${id}`);
+  }
+
+  approveComercio(id: number): Observable<Comercio> {
+    return this.http.put<Comercio>(`${this.API_URL}/comercios/${id}/aprobar`, {});
+  }
+
+  rejectComercio(id: number): Observable<Comercio> {
+    return this.http.put<Comercio>(`${this.API_URL}/comercios/${id}/rechazar`, {});
   }
 }

@@ -1,0 +1,66 @@
+<section class="auth-page">
+  <div class="auth-card">
+    <span class="section-kicker">Registro</span>
+    <h1>Registra tu comercio</h1>
+    <p>Tu cuenta y tu comercio quedaran pendientes de aprobacion por parte del equipo administrador.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <label>
+        <span>Nombre del responsable</span>
+        <input type="text" formControlName="nombre" placeholder="Emma Garcia">
+      </label>
+
+      <label>
+        <span>Email</span>
+        <input type="email" formControlName="email" placeholder="comercio@email.com">
+      </label>
+
+      <label>
+        <span>Contraseña</span>
+        <input type="password" formControlName="password" placeholder="Minimo 8 caracteres">
+      </label>
+
+      <label>
+        <span>Nombre del comercio</span>
+        <input type="text" formControlName="comercioNombre" placeholder="Peluqueria Emma">
+      </label>
+
+      <label>
+        <span>Direccion</span>
+        <input type="text" formControlName="comercioDireccion" placeholder="Calle Mayor 10">
+      </label>
+
+      <label>
+        <span>Telefono</span>
+        <input type="text" formControlName="comercioTelefono" placeholder="666111222">
+      </label>
+
+      <label>
+        <span>Categoria</span>
+        <select formControlName="categoriaId">
+          <option [ngValue]="0">Selecciona una categoria</option>
+          @for (categoria of categorias; track categoria.id) {
+            <option [ngValue]="categoria.id">{{ categoria.nombre }}</option>
+          }
+        </select>
+      </label>
+
+      @if (errorMessage) {
+        <p class="auth-form__error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="auth-form__success">{{ successMessage }}</p>
+      }
+
+      <button type="submit">
+        {{ loading ? 'Enviando...' : 'Solicitar alta' }}
+      </button>
+    </form>
+
+    <p class="auth-card__footer">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Acceder</a>
+    </p>
+  </div>
+</section>

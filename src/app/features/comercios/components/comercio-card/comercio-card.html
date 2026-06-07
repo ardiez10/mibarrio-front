@@ -1,7 +1,10 @@
 <article class="comercio-card">
 
     <div class="comercio-card__image">
-        <img [src]="comercio.imagenUrl" [alt]="comercio.nombre">
+        <img
+            [src]="comercio.imagenUrl || '/images/comercio-placeholder.png'"
+            [alt]="comercio.nombre"
+            (error)="setFallbackImage($event)">
     </div>
 
     <div class="comercio-card__content">
@@ -24,13 +27,9 @@
 
         <p>{{ comercio.direccion }}</p>
 
-        <small>{{ comercio.telefono }}</small>
-
-        <button>
-            <a class="comercio-card__button" [routerLink]="['/comercios', comercio.id]">
-                Ver ficha
-            </a>
-        </button>
+        <a class="comercio-card__button" [routerLink]="['/comercios', comercio.id]">
+            Ver ficha
+        </a>
 
     </div>
 

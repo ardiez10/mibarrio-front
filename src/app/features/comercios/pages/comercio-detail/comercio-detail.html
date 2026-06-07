@@ -4,10 +4,21 @@
     ← Volver a comercios
   </a>
 
-  @if (comercio) {
+  @if (loading) {
+
+    <p>Cargando comercio...</p>
+
+  } @else if (error) {
+
+    <p>No se ha podido cargar el comercio.</p>
+
+  } @else if (comercio) {
 
     <div class="comercio-detail__hero">
-      <img [src]="comercio.imagenUrl" [alt]="comercio.nombre">
+      <img
+        [src]="comercio.imagenUrl || '/images/comercio-placeholder.png'"
+        [alt]="comercio.nombre"
+        (error)="setFallbackImage($event)">
     </div>
 
     <div class="comercio-detail__content">
@@ -21,7 +32,9 @@
 
         <p>{{ comercio.direccion }}</p>
 
-        <p>{{ comercio.telefono }}</p>
+        @if (comercio.telefono) {
+          <p>{{ comercio.telefono }}</p>
+        }
       </div>
 
       <aside class="comercio-detail__sidebar">

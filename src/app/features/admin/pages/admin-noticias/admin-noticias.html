@@ -1,0 +1,82 @@
+<section class="admin-table-page">
+
+  <div class="admin-table-page__header">
+
+    <div>
+      <h2>Noticias</h2>
+      <p>Gestiona las noticias y contenidos informativos del barrio.</p>
+    </div>
+
+    <button type="button">
+      Nueva noticia
+    </button>
+
+  </div>
+
+  <div class="admin-table-wrapper">
+
+    <table class="admin-table">
+
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Fuente</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @if (loading) {
+          <tr>
+            <td colspan="5">Cargando noticias...</td>
+          </tr>
+        } @else if (error) {
+          <tr>
+            <td colspan="5">No se han podido cargar las noticias.</td>
+          </tr>
+        } @else if (noticias.length === 0) {
+          <tr>
+            <td colspan="5">No hay noticias publicadas.</td>
+          </tr>
+        }
+
+        @for (noticia of noticias; track noticia.id) {
+
+          <tr>
+
+            <td>{{ noticia.titulo }}</td>
+
+            <td>{{ noticia.fuente || 'Sin fuente' }}</td>
+
+            <td>{{ noticia.fechaPublicacion || noticia.fecha_publicacion || '-' }}</td>
+
+            <td>
+              <span
+                class="status"
+                [class.status--closed]="!noticia.activo">
+
+                {{ noticia.activo ? 'Activa' : 'Inactiva' }}
+
+              </span>
+            </td>
+
+            <td class="actions">
+              <button type="button">
+                Editar
+              </button>
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>

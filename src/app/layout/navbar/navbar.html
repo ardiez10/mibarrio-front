@@ -9,7 +9,17 @@
             <a routerLink="/noticias">Noticias</a>
         </nav>
 
-        <a class="navbar__login" routerLink="/login">Acceder</a>
+        @if (auth.isLoggedIn()) {
+            @if (auth.isAdmin()) {
+                <a class="navbar__login navbar__login--secondary" routerLink="/admin">Panel</a>
+            }
+            <button class="navbar__login" type="button" (click)="logout()">Salir</button>
+        } @else {
+            <div class="navbar__auth">
+                <a class="navbar__signup" routerLink="/signup">Registro</a>
+                <a class="navbar__login" routerLink="/login">Acceder</a>
+            </div>
+        }
 
         <button mat-icon-button class="navbar__menu" type="button" aria-label="Abrir menú" (click)="toggleMenu()">
             <mat-icon>menu</mat-icon>
@@ -22,5 +32,13 @@
     <a routerLink="/comercios" (click)="closeMenu()">Comercios</a>
     <a routerLink="/ofertas" (click)="closeMenu()">Ofertas</a>
     <a routerLink="/noticias" (click)="closeMenu()">Noticias</a>
-    <a routerLink="/login" (click)="closeMenu()">Acceder</a>
+    @if (auth.isLoggedIn()) {
+        @if (auth.isAdmin()) {
+            <a routerLink="/admin" (click)="closeMenu()">Panel</a>
+        }
+        <button type="button" (click)="logout()">Salir</button>
+    } @else {
+        <a routerLink="/signup" (click)="closeMenu()">Registro</a>
+        <a routerLink="/login" (click)="closeMenu()">Acceder</a>
+    }
 </nav>

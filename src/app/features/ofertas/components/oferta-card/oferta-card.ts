@@ -11,4 +11,8 @@ import { Oferta } from '../../../../core/models/oferta.model';
 })
 export class OfertaCard {
   @Input({ required: true }) oferta!: Oferta;
+
+  setFallbackImage(event: Event): void {
+    (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
 }

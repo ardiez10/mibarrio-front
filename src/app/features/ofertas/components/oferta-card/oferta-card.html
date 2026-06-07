@@ -1,7 +1,10 @@
 <article class="oferta-card">
 
   <div class="oferta-card__image">
-    <img [src]="oferta.imagen_url" [alt]="oferta.titulo">
+    <img
+      [src]="oferta.imagen_url || '/images/comercio-placeholder.png'"
+      [alt]="oferta.titulo"
+      (error)="setFallbackImage($event)">
   </div>
 
   <div class="oferta-card__content">
@@ -18,7 +21,7 @@
 
     <p>{{ oferta.descripcion }}</p>
 
-    <small>{{ oferta.comercio_nombre }}</small>
+    <small>{{ oferta.comercioNombre || oferta.comercio_nombre }}</small>
 
     <a class="oferta-card__button" [routerLink]="['/ofertas', oferta.id]">
       Ver oferta

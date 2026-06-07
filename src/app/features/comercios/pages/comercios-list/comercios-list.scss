@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .comercios-page {
   max-width: 90rem;
   margin: 0 auto;
@@ -9,6 +13,7 @@
 
 .comercios-page__header,
 .comercios-page__filters,
+.comercios-page__filters-actions,
 .comercios-page__grid {
   max-width: 72rem;
   margin-inline: auto;
@@ -36,7 +41,7 @@
 }
 
 .comercios-page__filters {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
@@ -53,14 +58,101 @@
   }
 }
 
+.comercios-page__filters-actions {
+  margin-bottom: 2rem;
+
+  button {
+    border: 0;
+    border-radius: 999px;
+    padding: 0.75rem 1rem;
+    background: #e5e7eb;
+    color: #111827;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+  }
+}
+
 .comercios-page__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 2rem;
 }
 
+.comercios-page__state {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #374151;
+  box-sizing: border-box;
+}
+
+.comercios-page__state--error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  p {
+    margin: 0;
+  }
+
+  button {
+    border: 0;
+    border-radius: 0.65rem;
+    padding: 0.75rem 1rem;
+    background: #0f172a;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
 app-comercio-card {
+  display: block;
   width: 100%;
+}
+
+@media (max-width: 90rem) {
+  .comercios-page {
+    padding: 1.75rem 1.5rem 3rem;
+  }
+
+  .comercios-page__header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 3.05rem;
+    }
+
+    p {
+      font-size: 1.08rem;
+    }
+  }
+
+  .comercios-page__filters {
+    gap: 1rem;
+
+    input,
+    select {
+      padding: 0.9rem 1rem;
+    }
+  }
+
+  .comercios-page__grid {
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 40rem) {
@@ -78,7 +170,7 @@ app-comercio-card {
 
   .comercios-page__filters {
     grid-template-columns: 1fr;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .comercios-page__grid {
@@ -89,6 +181,11 @@ app-comercio-card {
   app-comercio-card {
     max-width: 26rem;
     margin-inline: auto;
+  }
+
+  .comercios-page__state--error {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
 

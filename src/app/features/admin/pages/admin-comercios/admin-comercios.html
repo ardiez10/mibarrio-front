@@ -1,0 +1,139 @@
+<section class="admin-table-page">
+
+  <div class="admin-table-page__header">
+
+    <div>
+      <h2>Comercios</h2>
+
+      <p>
+        Gestiona los negocios registrados en la plataforma.
+      </p>
+    </div>
+
+    <button type="button" (click)="startCreate()">
+      {{ selectedComercioId ? 'Nuevo comercio' : 'Crear comercio' }}
+    </button>
+
+  </div>
+
+  <section class="admin-comercios-form">
+    <div class="admin-comercios-form__header">
+      <h3>{{ selectedComercioId ? 'Editar comercio' : 'Alta de comercio' }}</h3>
+      <p>Asocia el comercio a una cuenta aprobada y completa sus datos principales.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="admin-comercios-form__grid">
+      <label>
+        <span>Nombre</span>
+        <input type="text" formControlName="nombre" placeholder="Panaderia Roman">
+      </label>
+
+      <label>
+        <span>Telefono</span>
+        <input type="text" formControlName="telefono" placeholder="666111222">
+      </label>
+
+      <label class="admin-comercios-form__full">
+        <span>Direccion</span>
+        <input type="text" formControlName="direccion" placeholder="Calle Mayor 10">
+      </label>
+
+      <label>
+        <span>Categoria</span>
+        <select formControlName="categoriaId">
+          <option [value]="0">Selecciona una categoria</option>
+          @for (categoria of categorias; track categoria.id) {
+            <option [value]="categoria.id">{{ categoria.nombre }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        <span>Cuenta gestora</span>
+        <select formControlName="usuarioId">
+          <option [value]="0">Selecciona una cuenta</option>
+          @for (user of usuariosComercio; track user.id) {
+            <option [value]="user.id">{{ user.nombre }} - {{ user.email }}</option>
+          }
+        </select>
+      </label>
+
+      @if (errorMessage) {
+        <p class="admin-comercios-form__error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="admin-comercios-form__success">{{ successMessage }}</p>
+      }
+
+      <div class="admin-comercios-form__actions">
+        <button type="submit">
+          {{ submitting ? 'Guardando...' : (selectedComercioId ? 'Actualizar comercio' : 'Crear comercio') }}
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <div class="admin-table-wrapper">
+
+    <table class="admin-table">
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Categoría</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @for (comercio of comercios; track comercio.id) {
+
+          <tr>
+
+            <td>{{ comercio.nombre }}</td>
+
+            <td>
+              {{ comercio.categoria || 'Comercio local' }}
+            </td>
+
+            <td>{{ comercio.direccion }}</td>
+
+            <td>
+
+              <span
+                class="status"
+                [class.status--closed]="!comercio.activo">
+
+                {{ comercio.activo ? 'Activo' : 'Inactivo' }}
+
+              </span>
+
+            </td>
+
+            <td class="actions">
+
+              <button type="button" (click)="editComercio(comercio)">
+                Editar
+              </button>
+
+              <button type="button" class="actions__danger" (click)="deleteComercio(comercio)">
+                Eliminar
+              </button>
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>

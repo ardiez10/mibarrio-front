@@ -1,21 +1,30 @@
 <section class="noticia-detail">
   <a class="back-link" routerLink="/noticias">← Volver a noticias</a>
 
-  @if (noticia) {
+  @if (loading) {
+    <p>Cargando noticia...</p>
+  } @else if (error) {
+    <p>No se ha podido cargar la noticia.</p>
+  } @else if (noticia) {
     <div class="noticia-detail__hero">
-      <img [src]="noticia.imagen_url" [alt]="noticia.titulo">
+      <img
+        [src]="noticia.imagenUrl || noticia.imagen_url || '/images/comercio-placeholder.png'"
+        [alt]="noticia.titulo"
+        (error)="setFallbackImage($event)">
     </div>
 
     <div class="noticia-detail__content">
-      <span class="section-kicker">{{ noticia.fuente }}</span>
+      <span class="section-kicker">{{ noticia.fuente || 'Noticia local' }}</span>
 
       <h1>{{ noticia.titulo }}</h1>
 
       <p>{{ noticia.descripcion }}</p>
 
-      <a class="external-link" [href]="noticia.url" target="_blank">
-        Leer noticia original
-      </a>
+      @if (noticia.url) {
+        <a class="external-link" [href]="noticia.url" target="_blank">
+          Leer noticia original
+        </a>
+      }
     </div>
   } @else {
     <p>No se ha encontrado la noticia.</p>

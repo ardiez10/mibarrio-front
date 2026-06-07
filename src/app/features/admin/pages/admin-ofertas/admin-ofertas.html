@@ -1,0 +1,117 @@
+<section class="admin-table-page">
+
+  <div class="admin-table-page__header">
+
+    <div>
+      <h2>Ofertas</h2>
+      <p>Los comercios publican sus promociones y el panel permite revisarlas o gestionarlas.</p>
+    </div>
+
+    <button type="button" (click)="startCreate()">
+      {{ selectedOfertaId ? 'Nueva oferta' : 'Crear oferta' }}
+    </button>
+
+  </div>
+
+  <section class="admin-ofertas-form">
+    <div class="admin-ofertas-form__header">
+      <h3>{{ selectedOfertaId ? 'Editar oferta' : 'Alta de oferta' }}</h3>
+      <p>Asocia la promoción a un comercio y define hasta cuándo estará disponible.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="admin-ofertas-form__grid">
+      <label>
+        <span>Comercio</span>
+        <select formControlName="comercioId">
+          <option [value]="0">Selecciona un comercio</option>
+          @for (comercio of managedComercios; track comercio.id) {
+            <option [value]="comercio.id">{{ comercio.nombre }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        <span>Disponible hasta</span>
+        <input type="date" formControlName="fechaFin">
+      </label>
+
+      <label class="admin-ofertas-form__full">
+        <span>Titulo</span>
+        <input type="text" formControlName="titulo" placeholder="2x3 en café">
+      </label>
+
+      <label class="admin-ofertas-form__full">
+        <span>Descripcion</span>
+        <textarea formControlName="descripcion" rows="4" placeholder="Oferta disponible durante esta semana"></textarea>
+      </label>
+
+      @if (errorMessage) {
+        <p class="admin-ofertas-form__error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="admin-ofertas-form__success">{{ successMessage }}</p>
+      }
+
+      <div class="admin-ofertas-form__actions">
+        <button type="submit">
+          {{ submitting ? 'Guardando...' : (selectedOfertaId ? 'Actualizar oferta' : 'Publicar oferta') }}
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <div class="admin-table-wrapper">
+
+    <table class="admin-table">
+
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Comercio</th>
+          <th>Categoría</th>
+          <th>Disponible hasta</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @if (loading) {
+          <tr>
+            <td colspan="5">Cargando ofertas...</td>
+          </tr>
+        } @else if (error) {
+          <tr>
+            <td colspan="5">No se han podido cargar las ofertas.</td>
+          </tr>
+        } @else if (ofertas.length === 0) {
+          <tr>
+            <td colspan="5">No hay ofertas publicadas.</td>
+          </tr>
+        }
+
+        @for (oferta of ofertas; track oferta.id) {
+          <tr>
+            <td>{{ oferta.titulo }}</td>
+            <td>{{ oferta.comercioNombre || oferta.comercio_nombre }}</td>
+            <td>{{ oferta.categoria || 'Sin categoría' }}</td>
+            <td>{{ formatFechaFin(oferta.fechaFin) }}</td>
+            <td class="actions">
+              <button type="button" (click)="editOferta(oferta)">
+                Editar
+              </button>
+              <button type="button" class="actions__danger" (click)="deleteOferta(oferta)">
+                Desactivar
+              </button>
+            </td>
+          </tr>
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>

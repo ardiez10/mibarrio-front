@@ -15,9 +15,13 @@
     </p>
 
     <div class="hero__search">
-      <input type="text" placeholder="Buscar comercios..." />
+      <input
+        type="text"
+        placeholder="Buscar comercios..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="search()" />
 
-      <button>
+      <button type="button" (click)="search()">
         Buscar
       </button>
     </div>

@@ -16,26 +16,54 @@
 
   <div class="comercios-page__filters">
 
-    <input type="text" placeholder="Buscar comercio..." />
+    <input
+      type="text"
+      placeholder="Buscar comercio..."
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="applyFilters()" />
 
-    <select>
-      <option>Todas las categorías</option>
-      <option>Hostelería</option>
-      <option>Servicios</option>
-      <option>Comercio</option>
+    <select
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="applyFilters()">
+      <option value="">Todas las categorías</option>
+
+      @for (categoriaNombre of availableCategoryNames; track categoriaNombre) {
+        <option [value]="categoriaNombre">{{ categoriaNombre }}</option>
+      }
     </select>
 
   </div>
 
-  <div class="comercios-page__grid">
+  @if (hasActiveFilters) {
+    <div class="comercios-page__filters-actions">
+      <button type="button" (click)="clearFilters()">
+        Limpiar filtros
+      </button>
+    </div>
+  }
 
-    @for (comercio of comercios; track comercio.id) {
+  @if (loading) {
+    <p class="comercios-page__state">Cargando comercios...</p>
+  } @else if (error) {
+    <div class="comercios-page__state comercios-page__state--error">
+      <p>No se han podido cargar los comercios.</p>
+      <button type="button" (click)="loadComercios()">Reintentar</button>
+    </div>
+  } @else if (comercios.length === 0) {
+    <p class="comercios-page__state">Todavía no hay comercios publicados.</p>
+  } @else if (filteredComercios.length === 0) {
+    <p class="comercios-page__state">No hay comercios que coincidan con esos filtros.</p>
+  } @else {
+    <div class="comercios-page__grid">
 
-      <app-comercio-card
-        [comercio]="comercio">
-      </app-comercio-card>
+      @for (comercio of filteredComercios; track comercio.id) {
 
-    }
+        <app-comercio-card
+          [comercio]="comercio">
+        </app-comercio-card>
 
-  </div>
+      }
+
+    </div>
+  }
 </section>

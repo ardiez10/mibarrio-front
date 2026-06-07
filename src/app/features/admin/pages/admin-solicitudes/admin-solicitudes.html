@@ -1,0 +1,71 @@
+<section class="admin-table-page">
+  <div class="admin-table-page__header">
+    <div>
+      <h2>Solicitudes</h2>
+      <p>Revisa las altas de comercios antes de publicarlas.</p>
+    </div>
+
+    <button type="button" (click)="loadSolicitudes()">Actualizar</button>
+  </div>
+
+  @if (errorMessage) {
+    <p class="admin-solicitudes__error">{{ errorMessage }}</p>
+  }
+
+  @if (actionMessage) {
+    <p class="admin-solicitudes__success">{{ actionMessage }}</p>
+  }
+
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Comercio</th>
+          <th>Gestor</th>
+          <th>Categoría</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @if (loading) {
+          <tr>
+            <td colspan="6">Cargando solicitudes...</td>
+          </tr>
+        } @else if (solicitudes.length === 0) {
+          <tr>
+            <td colspan="6">No hay solicitudes pendientes.</td>
+          </tr>
+        }
+
+        @for (solicitud of solicitudes; track solicitud.id) {
+          <tr>
+            <td>
+              <strong>{{ solicitud.nombre }}</strong>
+              <span>{{ solicitud.telefono || 'Sin telefono' }}</span>
+            </td>
+            <td>
+              <strong>{{ solicitud.usuarioNombre || 'Sin gestor' }}</strong>
+              <span>{{ solicitud.usuarioEmail || 'Sin email' }}</span>
+            </td>
+            <td>{{ solicitud.categoria || 'Sin categoria' }}</td>
+            <td>{{ solicitud.direccion }}</td>
+            <td>
+              <span class="status status--pending">{{ solicitud.estado || 'PENDIENTE' }}</span>
+            </td>
+            <td class="actions">
+              <button type="button" [disabled]="processingId === solicitud.id" (click)="approve(solicitud)">
+                Aprobar
+              </button>
+              <button type="button" class="actions__danger" [disabled]="processingId === solicitud.id" (click)="reject(solicitud)">
+                Rechazar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

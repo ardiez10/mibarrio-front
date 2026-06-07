@@ -1,0 +1,72 @@
+<section class="admin-table-page">
+  <div class="admin-table-page__header">
+    <div>
+      <h2>Usuarios</h2>
+      <p>Consulta las cuentas registradas y su estado de acceso.</p>
+    </div>
+
+    <button type="button" (click)="loadUsuarios()">Actualizar</button>
+  </div>
+
+  @if (errorMessage) {
+    <p class="admin-usuarios__error">{{ errorMessage }}</p>
+  }
+
+  @if (actionMessage) {
+    <p class="admin-usuarios__success">{{ actionMessage }}</p>
+  }
+
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Alta</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @if (loading) {
+          <tr>
+            <td colspan="6">Cargando usuarios...</td>
+          </tr>
+        } @else if (usuarios.length === 0) {
+          <tr>
+            <td colspan="6">No hay usuarios registrados.</td>
+          </tr>
+        }
+
+        @for (usuario of usuarios; track usuario.id) {
+          <tr>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.rolNombre || '-' }}</td>
+            <td>
+              <span
+                class="status"
+                [class.status--pending]="usuario.estado === 'PENDIENTE'"
+                [class.status--closed]="usuario.estado === 'RECHAZADO'">
+                {{ usuario.estado || 'ACTIVO' }}
+              </span>
+            </td>
+            <td>{{ usuario.createdAt || '-' }}</td>
+            <td class="actions">
+              @if (canReview(usuario)) {
+                <button type="button" [disabled]="processingId === usuario.id" (click)="approve(usuario)">
+                  Aprobar
+                </button>
+                <button type="button" class="actions__danger" [disabled]="processingId === usuario.id" (click)="reject(usuario)">
+                  Rechazar
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -11,4 +11,8 @@ import { Noticia } from '../../../../core/models/noticia.model';
 })
 export class NoticiaCard {
   @Input({ required: true }) noticia!: Noticia;
+
+  setFallbackImage(event: Event): void {
+    (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
 }

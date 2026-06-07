@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .comercio-card {
   background: white;
   border: 1px solid #e5e7eb;
@@ -27,7 +31,7 @@
 }
 
 .comercio-card__content {
-  padding: 1rem 1rem 0.9rem;
+  padding: 1.25rem;
 
   h3 {
     margin: 0.65rem 0 0.35rem;
@@ -40,24 +44,6 @@
     margin: 0;
     color: #6b7280;
     line-height: 1.35;
-  }
-
-  small {
-    display: block;
-    margin-top: 0.45rem;
-    color: #6b7280;
-  }
-
-  button {
-    margin-top: 1.375rem;
-    width: 100%;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 0.75rem;
-    background: #0f172a;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
   }
 }
 
@@ -83,14 +69,15 @@
 }
 
 .comercio-card__button {
+  margin-top: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  height: 1.5rem;
+  height: 2.8rem;
 
-  border-radius: 0.9rem;
+  border-radius: 0.65rem;
 
   background: #0f172a;
 
@@ -102,6 +89,26 @@
   transition: background 0.2s ease;
 
   &:hover {
+    transform: scale(1.02);
     background: #1e293b;
+  }
+}
+
+@media (max-width: 90rem) {
+  .comercio-card__image {
+    height: 9rem;
+  }
+
+  .comercio-card__content {
+    padding: 1rem;
+
+    h3 {
+      font-size: 1.55rem;
+    }
+  }
+
+  .comercio-card__button {
+    height: 2.6rem;
+    margin-top: 0.8rem;
   }
 }

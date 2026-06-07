@@ -1,0 +1,26 @@
+.admin-solicitudes__error,
+.admin-solicitudes__success {
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+
+.admin-solicitudes__error {
+  color: #b91c1c;
+}
+
+.admin-solicitudes__success {
+  color: #166534;
+}
+
+td {
+  strong {
+    display: block;
+    color: #111827;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.25rem;
+    color: #6b7280;
+  }
+}

@@ -9,18 +9,26 @@
   </div>
 
   <div class="offers__grid">
-    @for (oferta of ofertas; track oferta.id) {
-    <article class="offer-card">
-      <span class="offer-card__badge">Abierta</span>
+    @if (loading) {
+      <p class="home-section-state">Cargando ofertas...</p>
+    } @else if (error) {
+      <p class="home-section-state">No se han podido cargar las ofertas.</p>
+    } @else if (ofertas.length === 0) {
+      <p class="home-section-state">Todavía no hay promociones activas.</p>
+    } @else {
+      @for (oferta of ofertas; track oferta.id) {
+      <article class="offer-card">
+        <span class="offer-card__badge">Abierta</span>
 
-      <h3>{{ oferta.titulo }}</h3>
+        <h3>{{ oferta.titulo }}</h3>
 
-      <p>{{ oferta.descripcion }}</p>
+        <p>{{ oferta.descripcion }}</p>
 
-      <a class="offer-card__button" [routerLink]="['/ofertas', oferta.id]">
-        Ver oferta
-      </a>
-    </article>
+        <a class="offer-card__button" [routerLink]="['/ofertas', oferta.id]">
+          Ver oferta
+        </a>
+      </article>
+      }
     }
   </div>
 </section>
