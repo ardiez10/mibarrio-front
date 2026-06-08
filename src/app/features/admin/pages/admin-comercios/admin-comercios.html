@@ -10,10 +10,6 @@
       </p>
     </div>
 
-    <button type="button" (click)="startCreate()">
-      {{ selectedComercioId ? 'Nuevo comercio' : 'Crear comercio' }}
-    </button>
-
   </div>
 
   <section class="admin-comercios-form">
@@ -48,15 +44,59 @@
         </select>
       </label>
 
-      <label>
-        <span>Cuenta gestora</span>
-        <select formControlName="usuarioId">
-          <option [value]="0">Selecciona una cuenta</option>
-          @for (user of usuariosComercio; track user.id) {
-            <option [value]="user.id">{{ user.nombre }} - {{ user.email }}</option>
-          }
-        </select>
-      </label>
+      @if (auth.isAdmin()) {
+        <label>
+          <span>Cuenta gestora</span>
+          <select formControlName="usuarioId">
+            <option [value]="0">Selecciona una cuenta</option>
+            @for (user of usuariosComercio; track user.id) {
+              <option [value]="user.id">{{ user.nombre }} - {{ user.email }}</option>
+            }
+          </select>
+        </label>
+      }
+
+      <div class="admin-comercios-form__full admin-comercios-form__horarios" formArrayName="horarios">
+        <div class="admin-comercios-form__subheader">
+          <div>
+            <h4>Horarios</h4>
+            <p>Añade una o varias franjas de apertura para el comercio.</p>
+          </div>
+
+          <button type="button" [disabled]="!canAddHorario()" (click)="addHorario()">Añadir horario</button>
+        </div>
+
+        @for (horario of horarios.controls; track $index) {
+          <div class="admin-comercios-form__horario-row" [formGroupName]="$index">
+            <label>
+              <span>Día</span>
+              <select formControlName="diaSemana">
+                @for (dia of diasSemana; track dia.value) {
+                  <option [value]="dia.value" [disabled]="isDayDisabled(dia.value, $index)">{{ dia.label }}</option>
+                }
+              </select>
+            </label>
+
+            <label>
+              <span>Apertura</span>
+              <input type="time" formControlName="horaApertura">
+            </label>
+
+            <label>
+              <span>Cierre</span>
+              <input type="time" formControlName="horaCierre">
+            </label>
+
+            <button
+              type="button"
+              class="admin-comercios-form__remove"
+              [disabled]="horarios.length === 1"
+              (click)="removeHorario($index)">
+              Quitar
+            </button>
+          </div>
+        }
+      </div>
 
       @if (errorMessage) {
         <p class="admin-comercios-form__error">{{ errorMessage }}</p>
@@ -120,9 +160,15 @@
                 Editar
               </button>
 
-              <button type="button" class="actions__danger" (click)="deleteComercio(comercio)">
-                Eliminar
-              </button>
+              @if (comercio.activo) {
+                <button type="button" class="actions__danger" (click)="deleteComercio(comercio)">
+                  Desactivar
+                </button>
+              } @else if (auth.isAdmin()) {
+                <button type="button" (click)="activateComercio(comercio)">
+                  Activar
+                </button>
+              }
 
             </td>
 

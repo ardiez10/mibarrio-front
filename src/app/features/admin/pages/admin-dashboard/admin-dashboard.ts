@@ -2,7 +2,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 
 import { Api } from '../../../../core/services/api';
+import { Auth } from '../../../../core/services/auth';
 import { Comercio } from '../../../../core/models/comercio.model';
+import { Oferta } from '../../../../core/models/oferta.model';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -22,6 +24,7 @@ export class AdminDashboard implements OnInit {
 
   constructor(
     private api: Api,
+    public auth: Auth,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
@@ -33,19 +36,25 @@ export class AdminDashboard implements OnInit {
     this.loadingPending = true;
     this.pendingError = false;
 
+    const comerciosRequest = this.auth.isAdmin() ? this.api.getComercios() : this.api.getMisComercios();
+    const pendingRequest = this.auth.isAdmin() ? this.api.getComerciosPendientes() : this.api.getMisComercios();
+
     forkJoin({
-      comercios: this.api.getComercios(),
+      comercios: comerciosRequest,
       ofertas: this.api.getOfertas(),
       noticias: this.api.getNoticias(),
-      pendingComercios: this.api.getComerciosPendientes()
+      pendingComercios: pendingRequest
     }).subscribe({
       next: ({ comercios, ofertas, noticias, pendingComercios }) => {
+        const scopedOfertas = this.scopeOfertas(ofertas, comercios);
         this.stats = {
           comercios: comercios.length,
-          ofertasActivas: ofertas.filter(oferta => oferta.activo).length,
+          ofertasActivas: scopedOfertas.filter(oferta => oferta.activo).length,
           noticias: noticias.length
         };
-        this.pendingComercios = pendingComercios;
+        this.pendingComercios = this.auth.isAdmin()
+          ? pendingComercios
+          : pendingComercios.filter(comercio => comercio.estado === 'PENDIENTE');
         this.loadingPending = false;
         this.changeDetectorRef.detectChanges();
       },
@@ -58,6 +67,11 @@ export class AdminDashboard implements OnInit {
   }
 
   loadPendingComercios(): void {
+    if (!this.auth.isAdmin()) {
+      this.loadDashboard();
+      return;
+    }
+
     this.loadingPending = true;
     this.pendingError = false;
 
@@ -85,5 +99,14 @@ export class AdminDashboard implements OnInit {
     this.api.rejectComercio(comercioId).subscribe({
       next: () => this.loadPendingComercios()
     });
+  }
+
+  private scopeOfertas(ofertas: Oferta[], comercios: Comercio[]): Oferta[] {
+    if (this.auth.isAdmin()) {
+      return ofertas;
+    }
+
+    const comercioIds = new Set(comercios.map(comercio => comercio.id));
+    return ofertas.filter(oferta => comercioIds.has(oferta.comercioId ?? oferta.comercio_id ?? 0));
   }
 }

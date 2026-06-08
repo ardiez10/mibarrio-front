@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { retry } from 'rxjs';
 
 import { Api } from '../../../../core/services/api';
-import { Comercio } from '../../../../core/models/comercio.model';
+import { Comercio, Horario } from '../../../../core/models/comercio.model';
 
 @Component({
   selector: 'app-comercio-detail',
@@ -16,6 +16,7 @@ export class ComercioDetail implements OnInit {
   comercio?: Comercio;
   loading = true;
   error = false;
+  private readonly diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
   constructor(
     private route: ActivatedRoute,
@@ -53,5 +54,22 @@ export class ComercioDetail implements OnInit {
 
   setFallbackImage(event: Event): void {
     (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
+
+  get horarios(): Horario[] {
+    return [...(this.comercio?.horarios ?? [])]
+      .sort((a, b) => (a.diaSemana ?? 99) - (b.diaSemana ?? 99));
+  }
+
+  formatDiaSemana(diaSemana?: number): string {
+    if (!diaSemana || diaSemana < 1 || diaSemana > this.diasSemana.length) {
+      return 'Día';
+    }
+
+    return this.diasSemana[diaSemana - 1];
+  }
+
+  formatHora(hora?: string): string {
+    return hora ? hora.slice(0, 5) : '-';
   }
 }

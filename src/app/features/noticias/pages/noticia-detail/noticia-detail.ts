@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { retry } from 'rxjs';
 
@@ -7,7 +8,7 @@ import { Noticia } from '../../../../core/models/noticia.model';
 
 @Component({
   selector: 'app-noticia-detail',
-  imports: [RouterLink],
+  imports: [MatIconModule, RouterLink],
   templateUrl: './noticia-detail.html',
   styleUrl: './noticia-detail.scss',
 })

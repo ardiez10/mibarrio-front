@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { retry } from 'rxjs';
 
+import { APP_BRANDING } from '../../../../core/config/app-branding';
 import { Api } from '../../../../core/services/api';
 import { Categoria } from '../../../../core/models/categoria.model';
 import { Comercio } from '../../../../core/models/comercio.model';
@@ -16,6 +17,7 @@ import { ComercioCard } from '../../components/comercio-card/comercio-card';
   styleUrl: './comercios-list.scss',
 })
 export class ComerciosList implements OnInit {
+  readonly branding = APP_BRANDING;
 
   comercios: Comercio[] = [];
   categorias: Categoria[] = [];

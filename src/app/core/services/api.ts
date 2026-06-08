@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 import { LoginRequest, LoginResponse, SignupRequest, SignupResponse } from '../models/auth.model';
-import { Comercio } from '../models/comercio.model';
+import { Comercio, Horario } from '../models/comercio.model';
 import { Noticia } from '../models/noticia.model';
 import { Oferta } from '../models/oferta.model';
 import { Categoria } from '../models/categoria.model';
@@ -30,6 +30,14 @@ export class Api {
   
   getComercios(): Observable<Comercio[]> {
     return this.http.get<Comercio[]>(`${this.API_URL}/comercios`);
+  }
+
+  getAdminComercios(): Observable<Comercio[]> {
+    return this.http.get<Comercio[]>(`${this.API_URL}/comercios/admin`);
+  }
+
+  getMisComercios(): Observable<Comercio[]> {
+    return this.http.get<Comercio[]>(`${this.API_URL}/comercios/mios`);
   }
 
   getComerciosPendientes(): Observable<Comercio[]> {
@@ -71,9 +79,43 @@ export class Api {
   getNoticias(): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(`${this.API_URL}/noticias`);
   }
+
+  getAdminNoticias(): Observable<Noticia[]> {
+    return this.http.get<Noticia[]>(`${this.API_URL}/noticias/admin`);
+  }
   
   getNoticiaById(id: number): Observable<Noticia> {
     return this.http.get<Noticia>(`${this.API_URL}/noticias/${id}`);
+  }
+
+  createNoticia(payload: {
+    titulo: string;
+    descripcion: string;
+    fuente?: string;
+    url?: string;
+    imagenUrl?: string;
+    fechaPublicacion?: string;
+  }): Observable<Noticia> {
+    return this.http.post<Noticia>(`${this.API_URL}/noticias`, payload);
+  }
+
+  updateNoticia(id: number, payload: {
+    titulo: string;
+    descripcion: string;
+    fuente?: string;
+    url?: string;
+    imagenUrl?: string;
+    fechaPublicacion?: string;
+  }): Observable<Noticia> {
+    return this.http.put<Noticia>(`${this.API_URL}/noticias/${id}`, payload);
+  }
+
+  deleteNoticia(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/noticias/${id}`);
+  }
+
+  activateNoticia(id: number): Observable<Noticia> {
+    return this.http.put<Noticia>(`${this.API_URL}/noticias/${id}/activar`, {});
   }
 
   getCategorias() {
@@ -94,6 +136,10 @@ export class Api {
 
   rejectUsuario(id: number): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.API_URL}/usuarios/${id}/rechazar`, {});
+  }
+
+  deleteUsuario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/usuarios/${id}`);
   }
 
   createComercio(payload: {
@@ -126,5 +172,25 @@ export class Api {
 
   rejectComercio(id: number): Observable<Comercio> {
     return this.http.put<Comercio>(`${this.API_URL}/comercios/${id}/rechazar`, {});
+  }
+
+  createHorario(comercioId: number, payload: {
+    diaSemana: number;
+    horaApertura: string;
+    horaCierre: string;
+  }): Observable<Horario> {
+    return this.http.post<Horario>(`${this.API_URL}/horarios/comercio/${comercioId}`, payload);
+  }
+
+  updateHorario(id: number, payload: {
+    diaSemana: number;
+    horaApertura: string;
+    horaCierre: string;
+  }): Observable<Horario> {
+    return this.http.put<Horario>(`${this.API_URL}/horarios/${id}`, payload);
+  }
+
+  deleteHorario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/horarios/${id}`);
   }
 }

@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { APP_BRANDING } from '../../core/config/app-branding';
 import { Auth } from '../../core/services/auth';
 
 @Component({
@@ -13,6 +14,7 @@ import { Auth } from '../../core/services/auth';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
+  readonly branding = APP_BRANDING;
   menuOpen = false;
 
   constructor(public auth: Auth) {}
@@ -23,6 +25,10 @@ export class Navbar {
 
   closeMenu(): void {
     this.menuOpen = false;
+  }
+
+  canAccessPanel(): boolean {
+    return this.auth.isAdmin() || this.auth.isComercio();
   }
 
   logout(): void {

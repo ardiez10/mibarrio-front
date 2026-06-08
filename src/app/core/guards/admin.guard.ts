@@ -7,9 +7,20 @@ export const adminGuard: CanActivateFn = () => {
   const auth = inject(Auth);
   const router = inject(Router);
 
-  if (auth.isAdmin()) {
+  if (auth.isAdmin() || auth.isComercio()) {
     return true;
   }
 
   return router.createUrlTree(['/login']);
+};
+
+export const adminOnlyGuard: CanActivateFn = () => {
+  const auth = inject(Auth);
+  const router = inject(Router);
+
+  if (auth.isAdmin()) {
+    return true;
+  }
+
+  return router.createUrlTree(['/admin']);
 };

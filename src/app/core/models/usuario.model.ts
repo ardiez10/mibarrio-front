@@ -7,4 +7,5 @@ export interface Usuario {
   createdAt?: string;
   updatedAt?: string;
   estado?: string;
+  activo?: boolean;
 }

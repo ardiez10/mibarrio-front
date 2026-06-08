@@ -38,17 +38,36 @@
       </div>
 
       <aside class="comercio-detail__sidebar">
-        <h3>Información</h3>
+        <div>
+          <h3>Información</h3>
 
-        <p>
-          Estado:
-          <strong>{{ comercio.activo ? 'Abierto' : 'Cerrado' }}</strong>
-        </p>
+          <p>
+            Estado:
+            <strong>{{ comercio.activo ? 'Activo' : 'Inactivo' }}</strong>
+          </p>
 
-        <p>
-          Categoría:
-          <strong>{{ comercio.categoria || 'Comercio local' }}</strong>
-        </p>
+          <p>
+            Categoría:
+            <strong>{{ comercio.categoria || 'Comercio local' }}</strong>
+          </p>
+        </div>
+
+        <div class="comercio-detail__hours">
+          <h3>Horario</h3>
+
+          @if (horarios.length > 0) {
+            <ul>
+              @for (horario of horarios; track horario.id) {
+                <li>
+                  <span>{{ formatDiaSemana(horario.diaSemana) }}</span>
+                  <strong>{{ formatHora(horario.horaApertura) }} - {{ formatHora(horario.horaCierre) }}</strong>
+                </li>
+              }
+            </ul>
+          } @else {
+            <p>Horario no disponible</p>
+          }
+        </div>
       </aside>
 
     </div>

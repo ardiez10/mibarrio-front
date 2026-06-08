@@ -40,4 +40,8 @@ export class NewsSection implements OnInit {
       }
     });
   }
+
+  setFallbackImage(event: Event): void {
+    (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
 }

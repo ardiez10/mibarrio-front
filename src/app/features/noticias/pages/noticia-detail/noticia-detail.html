@@ -6,24 +6,40 @@
   } @else if (error) {
     <p>No se ha podido cargar la noticia.</p>
   } @else if (noticia) {
-    <div class="noticia-detail__hero">
-      <img
-        [src]="noticia.imagenUrl || noticia.imagen_url || '/images/comercio-placeholder.png'"
-        [alt]="noticia.titulo"
-        (error)="setFallbackImage($event)">
+    <div class="noticia-detail__header">
+      <div class="noticia-detail__intro">
+        <span class="section-kicker">{{ noticia.fuente || 'Noticia local' }}</span>
+
+        <h1>{{ noticia.titulo }}</h1>
+
+        <div class="noticia-detail__meta">
+          <span>{{ noticia.fechaPublicacion || noticia.fecha_publicacion }}</span>
+        </div>
+      </div>
+
+      <div class="noticia-detail__hero">
+        <img
+          [src]="noticia.imagenUrl || noticia.imagen_url || '/images/comercio-placeholder.png'"
+          [alt]="noticia.titulo"
+          (error)="setFallbackImage($event)">
+      </div>
     </div>
 
-    <div class="noticia-detail__content">
-      <span class="section-kicker">{{ noticia.fuente || 'Noticia local' }}</span>
-
-      <h1>{{ noticia.titulo }}</h1>
-
+    <div class="noticia-detail__body">
       <p>{{ noticia.descripcion }}</p>
 
       @if (noticia.url) {
-        <a class="external-link" [href]="noticia.url" target="_blank">
-          Leer noticia original
-        </a>
+        <div class="noticia-detail__source">
+          <div>
+            <span>Fuente</span>
+            <strong>{{ noticia.fuente || 'Noticia original' }}</strong>
+          </div>
+
+          <a class="external-link" [href]="noticia.url" target="_blank" rel="noopener noreferrer">
+            <mat-icon aria-hidden="true">link</mat-icon>
+            Leer noticia original
+          </a>
+        </div>
       }
     </div>
   } @else {

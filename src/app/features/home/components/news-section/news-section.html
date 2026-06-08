@@ -18,13 +18,16 @@
     } @else {
       @for (noticia of noticias; track noticia.id) {
 
-        <article class="news-card">
+        <article class="news-card" [routerLink]="['/noticias', noticia.id]">
+
+          <img
+            [src]="noticia.imagenUrl || noticia.imagen_url || '/images/comercio-placeholder.png'"
+            [alt]="noticia.titulo"
+            (error)="setFallbackImage($event)">
 
           <span>{{ noticia.fuente || 'Noticia local' }}</span>
 
           <h3>{{ noticia.titulo }}</h3>
-
-          <p>{{ noticia.descripcion }}</p>
 
           <a [routerLink]="['/noticias', noticia.id]">
             Leer más →

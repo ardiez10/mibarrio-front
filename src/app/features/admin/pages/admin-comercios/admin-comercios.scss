@@ -36,7 +36,8 @@
   }
 
   input,
-  select {
+  select,
+  textarea {
     width: 100%;
     padding: 0.95rem 1rem;
     border: 1px solid #d1d5db;
@@ -44,6 +45,74 @@
     font: inherit;
     box-sizing: border-box;
     background: #ffffff;
+  }
+}
+
+.admin-comercios-form__horarios {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.5rem;
+}
+
+.admin-comercios-form__subheader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+
+  h4,
+  p {
+    margin: 0;
+  }
+
+  h4 {
+    color: #111827;
+  }
+
+  p {
+    margin-top: 0.2rem;
+    color: #6b7280;
+  }
+
+  button {
+    min-height: 2.5rem;
+    border: 0;
+    border-radius: 0.7rem;
+    padding: 0 1rem;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}
+
+.admin-comercios-form__horario-row {
+  display: grid;
+  grid-template-columns: 1fr 10rem 10rem auto;
+  gap: 0.85rem;
+  align-items: end;
+}
+
+.admin-comercios-form__remove {
+  min-height: 3rem;
+  border: 0;
+  border-radius: 0.75rem;
+  padding: 0 1rem;
+  background: #f3f4f6;
+  color: #374151;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
   }
 }
 
@@ -93,5 +162,14 @@
 @media (max-width: 48rem) {
   .admin-comercios-form__grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-comercios-form__subheader,
+  .admin-comercios-form__horario-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-comercios-form__subheader {
+    display: grid;
   }
 }

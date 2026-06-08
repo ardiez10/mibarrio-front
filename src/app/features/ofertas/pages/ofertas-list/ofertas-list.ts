@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, retry } from 'rxjs';
 
+import { APP_BRANDING } from '../../../../core/config/app-branding';
 import { Api } from '../../../../core/services/api';
 import { Categoria } from '../../../../core/models/categoria.model';
 import { Comercio } from '../../../../core/models/comercio.model';
@@ -16,6 +17,7 @@ import { OfertaCard } from '../../components/oferta-card/oferta-card';
   styleUrl: './ofertas-list.scss',
 })
 export class OfertasList implements OnInit {
+  readonly branding = APP_BRANDING;
   ofertas: Oferta[] = [];
   loading = true;
   error = false;

@@ -7,11 +7,60 @@
       <p>Gestiona las noticias y contenidos informativos del barrio.</p>
     </div>
 
-    <button type="button">
-      Nueva noticia
-    </button>
-
   </div>
+
+  <section class="admin-noticias-form">
+    <div class="admin-noticias-form__header">
+      <h3>{{ selectedNoticiaId ? 'Editar noticia' : 'Alta de noticia' }}</h3>
+      <p>Modifica titulares, descripción, imagen y visibilidad de las noticias importadas o creadas manualmente.</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="admin-noticias-form__grid">
+      <label class="admin-noticias-form__full">
+        <span>Título</span>
+        <input type="text" formControlName="titulo" placeholder="Titular de la noticia">
+      </label>
+
+      <label>
+        <span>Fuente</span>
+        <input type="text" formControlName="fuente" placeholder="La Opinión A Coruña">
+      </label>
+
+      <label>
+        <span>Fecha</span>
+        <input type="date" formControlName="fechaPublicacion">
+      </label>
+
+      <label class="admin-noticias-form__full">
+        <span>URL original</span>
+        <input type="url" formControlName="url" placeholder="https://...">
+      </label>
+
+      <label class="admin-noticias-form__full">
+        <span>URL imagen</span>
+        <input type="url" formControlName="imagenUrl" placeholder="https://...jpg">
+      </label>
+
+      <label class="admin-noticias-form__full">
+        <span>Descripción</span>
+        <textarea formControlName="descripcion" rows="5" placeholder="Resumen o contenido de la noticia"></textarea>
+      </label>
+
+      @if (errorMessage) {
+        <p class="admin-noticias-form__error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="admin-noticias-form__success">{{ successMessage }}</p>
+      }
+
+      <div class="admin-noticias-form__actions">
+        <button type="submit">
+          {{ submitting ? 'Guardando...' : (selectedNoticiaId ? 'Actualizar noticia' : 'Crear noticia') }}
+        </button>
+      </div>
+    </form>
+  </section>
 
   <div class="admin-table-wrapper">
 
@@ -64,9 +113,19 @@
             </td>
 
             <td class="actions">
-              <button type="button">
+              <button type="button" (click)="editNoticia(noticia)">
                 Editar
               </button>
+
+              @if (noticia.activo) {
+                <button type="button" class="actions__danger" (click)="deactivateNoticia(noticia)">
+                  Desactivar
+                </button>
+              } @else {
+                <button type="button" (click)="activateNoticia(noticia)">
+                  Activar
+                </button>
+              }
             </td>
 
           </tr>

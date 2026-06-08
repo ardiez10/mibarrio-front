@@ -1,3 +1,12 @@
+export interface Horario {
+  id: number;
+  diaSemana: number;
+  horaApertura: string;
+  horaCierre: string;
+  comercioId?: number;
+  comercioNombre?: string;
+}
+
 export interface Comercio {
   id: number;
   nombre: string;
@@ -13,4 +22,5 @@ export interface Comercio {
   estado?: string;
   createdAt?: string;
   updatedAt?: string;
+  horarios?: Horario[];
 }

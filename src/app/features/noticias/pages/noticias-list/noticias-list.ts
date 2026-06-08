@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { retry } from 'rxjs';
 
+import { APP_BRANDING } from '../../../../core/config/app-branding';
 import { Api } from '../../../../core/services/api';
 import { Noticia } from '../../../../core/models/noticia.model';
 import { NoticiaCard } from '../../components/noticia-card/noticia-card';
@@ -12,6 +13,7 @@ import { NoticiaCard } from '../../components/noticia-card/noticia-card';
   styleUrl: './noticias-list.scss',
 })
 export class NoticiasList implements OnInit {
+  readonly branding = APP_BRANDING;
   noticias: Noticia[] = [];
   loading = true;
   error = false;

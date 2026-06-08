@@ -27,6 +27,7 @@ export class Auth {
         const session: AuthSession = {
           token: response.token,
           email: response.email,
+          userId: response.userId,
           rol: response.rol
         };
         this.sessionState.set(session);
@@ -57,7 +58,14 @@ export class Auth {
     }
 
     try {
-      return JSON.parse(rawSession) as AuthSession;
+      const session = JSON.parse(rawSession) as AuthSession;
+
+      if (!session.userId) {
+        localStorage.removeItem(this.storageKey);
+        return null;
+      }
+
+      return session;
     } catch {
       localStorage.removeItem(this.storageKey);
       return null;

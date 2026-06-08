@@ -75,7 +75,9 @@ export class AdminOfertas implements OnInit {
   }
 
   loadComercios(): void {
-    this.api.getComercios().subscribe({
+    const request = this.auth.isAdmin() ? this.api.getComercios() : this.api.getMisComercios();
+
+    request.subscribe({
       next: (comercios) => {
         this.comercios = comercios;
         this.changeDetectorRef.detectChanges();

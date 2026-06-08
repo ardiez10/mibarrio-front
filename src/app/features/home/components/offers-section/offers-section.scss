@@ -38,9 +38,9 @@
     max-width: 72rem;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 22rem));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 18rem));
     justify-content: start;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .home-section-state {
@@ -56,23 +56,27 @@
 .offer-card {
     display: flex;
     flex-direction: column;
-    min-height: 14rem;
-    padding: 1.25rem;
+    min-height: 10.75rem;
+    padding: 1rem;
     border-radius: 1rem;
     border: 1px solid #e5e7eb;
     background: #f9fafb;
 
     h3 {
-        margin: 1rem 0 0.5rem;
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
+        margin: 0.75rem 0 0.4rem;
+        font-size: 1.18rem;
         line-height: 1.1;
         color: #111827;
     }
 
     p {
-        margin: 0 0 1rem;
+        margin: 0 0 0.8rem;
         color: #6b7280;
-        line-height: 1.45;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
 
@@ -110,16 +114,16 @@
     }
 
     .offers__grid {
-        grid-template-columns: repeat(auto-fill, minmax(17rem, 19rem));
-        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(14.5rem, 17rem));
+        gap: 1rem;
     }
 
     .offer-card {
-        min-height: 12.5rem;
+        min-height: 10.25rem;
         padding: 1rem;
 
         h3 {
-            font-size: 1.35rem;
+            font-size: 1.15rem;
         }
     }
 }

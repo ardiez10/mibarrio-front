@@ -36,7 +36,7 @@ export class Login {
     this.auth.login(this.form.getRawValue()).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigateByUrl(this.auth.isAdmin() ? '/admin' : '/');
+        this.router.navigateByUrl(this.auth.isAdmin() || this.auth.isComercio() ? '/admin' : '/');
       },
       error: (err) => {
         this.loading = false;

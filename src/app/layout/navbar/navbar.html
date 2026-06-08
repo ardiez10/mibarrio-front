@@ -1,6 +1,12 @@
 <header class="navbar">
     <div class="navbar__inner">
-        <a class="navbar__logo" routerLink="/">miBarrio</a>
+        <a class="navbar__brand" routerLink="/">
+            <img class="navbar__mark" src="/images/miBarrio_logo.png" alt="" aria-hidden="true">
+            <span class="navbar__brand-text">
+                <span class="navbar__logo">{{ branding.appName }}</span>
+                <span class="navbar__place">{{ branding.neighborhoodName }}</span>
+            </span>
+        </a>
 
         <nav class="navbar__links">
             <a routerLink="/">Inicio</a>
@@ -10,7 +16,7 @@
         </nav>
 
         @if (auth.isLoggedIn()) {
-            @if (auth.isAdmin()) {
+            @if (canAccessPanel()) {
                 <a class="navbar__login navbar__login--secondary" routerLink="/admin">Panel</a>
             }
             <button class="navbar__login" type="button" (click)="logout()">Salir</button>
@@ -33,7 +39,7 @@
     <a routerLink="/ofertas" (click)="closeMenu()">Ofertas</a>
     <a routerLink="/noticias" (click)="closeMenu()">Noticias</a>
     @if (auth.isLoggedIn()) {
-        @if (auth.isAdmin()) {
+        @if (canAccessPanel()) {
             <a routerLink="/admin" (click)="closeMenu()">Panel</a>
         }
         <button type="button" (click)="logout()">Salir</button>

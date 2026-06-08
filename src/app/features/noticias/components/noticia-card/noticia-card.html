@@ -1,4 +1,4 @@
-<article class="noticia-card">
+<a class="noticia-card" [routerLink]="['/noticias', noticia.id]">
 
   <div class="noticia-card__image">
     <img
@@ -16,12 +16,10 @@
 
     <h3>{{ noticia.titulo }}</h3>
 
-    <p>{{ noticia.descripcion }}</p>
-
-    <a class="noticia-card__button" [routerLink]="['/noticias', noticia.id]">
+    <span class="noticia-card__button">
       Leer más
-    </a>
+    </span>
 
   </div>
 
-</article>
+</a>

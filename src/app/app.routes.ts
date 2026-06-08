@@ -18,7 +18,7 @@ import { NoticiaDetail } from './features/noticias/pages/noticia-detail/noticia-
 import { NoticiasList } from './features/noticias/pages/noticias-list/noticias-list';
 import { OfertaDetail } from './features/ofertas/pages/oferta-detail/oferta-detail';
 import { OfertasList } from './features/ofertas/pages/ofertas-list/ofertas-list';
-import { adminGuard } from './core/guards/admin.guard';
+import { adminGuard, adminOnlyGuard } from './core/guards/admin.guard';
 import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
@@ -87,10 +87,12 @@ export const routes: Routes = [
             },
             {
                 path: 'solicitudes',
+                canActivate: [adminOnlyGuard],
                 component: AdminSolicitudes
             },
             {
                 path: 'usuarios',
+                canActivate: [adminOnlyGuard],
                 component: AdminUsuarios
             },
             {
@@ -103,6 +105,7 @@ export const routes: Routes = [
             },
             {
                 path: 'noticias',
+                canActivate: [adminOnlyGuard],
                 component: AdminNoticias
             }
         ]

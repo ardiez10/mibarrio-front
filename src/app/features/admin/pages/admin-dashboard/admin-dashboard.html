@@ -1,14 +1,14 @@
 <section class="dashboard">
   <div class="dashboard__header">
-    <h2>Resumen general</h2>
-    <p>Vista rápida del estado de la plataforma.</p>
+    <h2>{{ auth.isAdmin() ? 'Resumen general' : 'Resumen de tu cuenta' }}</h2>
+    <p>{{ auth.isAdmin() ? 'Vista rápida del estado de la plataforma.' : 'Gestiona tus comercios, horarios y promociones desde aquí.' }}</p>
   </div>
 
   <div class="dashboard__cards">
     <article class="dashboard-card">
       <span>Comercios</span>
       <strong>{{ stats.comercios }}</strong>
-      <p>Negocios registrados</p>
+      <p>{{ auth.isAdmin() ? 'Negocios registrados' : 'Negocios gestionados' }}</p>
     </article>
 
     <article class="dashboard-card">
@@ -27,10 +27,10 @@
   <section class="dashboard__pending">
     <div class="dashboard__pending-header">
       <h3>
-        Solicitudes pendientes
+        {{ auth.isAdmin() ? 'Solicitudes pendientes' : 'Tus comercios pendientes' }}
         <span>{{ pendingComercios.length }}</span>
       </h3>
-      <p>Altas de comercios a la espera de revision.</p>
+      <p>{{ auth.isAdmin() ? 'Altas de comercios a la espera de revision.' : 'Altas que todavía necesitan aprobación del administrador.' }}</p>
     </div>
 
     @if (loadingPending) {
@@ -49,10 +49,12 @@
               <p>{{ comercio.direccion }} · {{ comercio.categoria || 'Sin categoria' }}</p>
             </div>
 
-            <div class="pending-user__actions">
-              <button type="button" class="pending-user__approve" (click)="approveComercio(comercio.id)">Aprobar</button>
-              <button type="button" class="pending-user__reject" (click)="rejectComercio(comercio.id)">Rechazar</button>
-            </div>
+            @if (auth.isAdmin()) {
+              <div class="pending-user__actions">
+                <button type="button" class="pending-user__approve" (click)="approveComercio(comercio.id)">Aprobar</button>
+                <button type="button" class="pending-user__reject" (click)="rejectComercio(comercio.id)">Rechazar</button>
+              </div>
+            }
           </article>
         }
       </div>

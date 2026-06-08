@@ -49,11 +49,11 @@
               <span
                 class="status"
                 [class.status--pending]="usuario.estado === 'PENDIENTE'"
-                [class.status--closed]="usuario.estado === 'RECHAZADO'">
-                {{ usuario.estado || 'ACTIVO' }}
+                [class.status--closed]="usuario.estado === 'RECHAZADO' || usuario.activo === false">
+                {{ usuario.activo === false ? 'INACTIVO' : (usuario.estado || 'ACTIVO') }}
               </span>
             </td>
-            <td>{{ usuario.createdAt || '-' }}</td>
+            <td>{{ formatDateTime(usuario.createdAt) }}</td>
             <td class="actions">
               @if (canReview(usuario)) {
                 <button type="button" [disabled]="processingId === usuario.id" (click)="approve(usuario)">
@@ -61,6 +61,24 @@
                 </button>
                 <button type="button" class="actions__danger" [disabled]="processingId === usuario.id" (click)="reject(usuario)">
                   Rechazar
+                </button>
+              }
+
+              @if (canActivate(usuario)) {
+                <button type="button" [disabled]="processingId === usuario.id" (click)="approve(usuario)">
+                  Activar
+                </button>
+              }
+
+              @if (canDeactivate(usuario)) {
+                <button type="button" class="actions__danger" [disabled]="processingId === usuario.id" (click)="deactivate(usuario)">
+                  Desactivar
+                </button>
+              }
+
+              @if (canDelete(usuario)) {
+                <button type="button" class="actions__danger" [disabled]="processingId === usuario.id" (click)="delete(usuario)">
+                  Eliminar
                 </button>
               }
             </td>

@@ -7,6 +7,7 @@ export interface LoginResponse {
   token: string;
   type: string;
   email: string;
+  userId: number;
   rol: string;
 }
 
@@ -29,5 +30,6 @@ export interface SignupResponse {
 export interface AuthSession {
   token: string;
   email: string;
+  userId: number;
   rol: string;
 }
