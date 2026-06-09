@@ -72,7 +72,7 @@
               <span>Día</span>
               <select formControlName="diaSemana">
                 @for (dia of diasSemana; track dia.value) {
-                  <option [value]="dia.value" [disabled]="isDayDisabled(dia.value, $index)">{{ dia.label }}</option>
+                  <option [value]="dia.value">{{ dia.label }}</option>
                 }
               </select>
             </label>

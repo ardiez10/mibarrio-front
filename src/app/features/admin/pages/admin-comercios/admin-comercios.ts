@@ -99,15 +99,10 @@ export class AdminComercios implements OnInit {
   }
 
   addHorario(): void {
-    const usedDays = this.getUsedDays();
-    const nextDay = this.diasSemana.find(dia => !usedDays.has(dia.value));
+    const previousDay = Number(this.horarios.at(this.horarios.length - 1)?.value.diaSemana) || 1;
+    const nextDay = previousDay >= this.diasSemana.length ? 1 : previousDay + 1;
 
-    if (!nextDay) {
-      this.errorMessage = 'Ya has añadido todos los días de la semana.';
-      return;
-    }
-
-    this.horarios.push(this.createHorarioGroup({ diaSemana: nextDay.value }));
+    this.horarios.push(this.createHorarioGroup({ diaSemana: nextDay }));
   }
 
   removeHorario(index: number): void {
@@ -115,13 +110,7 @@ export class AdminComercios implements OnInit {
   }
 
   canAddHorario(): boolean {
-    return this.horarios.length < this.diasSemana.length;
-  }
-
-  isDayDisabled(day: number, currentIndex: number): boolean {
-    return this.horarios.controls.some((control, index) =>
-      index !== currentIndex && Number(control.value.diaSemana) === day
-    );
+    return true;
   }
 
   editComercio(comercio: Comercio): void {
@@ -281,18 +270,7 @@ export class AdminComercios implements OnInit {
     return value ? value.slice(0, 5) : '';
   }
 
-  private getUsedDays(): Set<number> {
-    return new Set(this.horarios.controls.map(control => Number(control.value.diaSemana)));
-  }
-
   private validateHorarios(horarios: Array<{ diaSemana: number; horaApertura: string; horaCierre: string }>): string {
-    const days = horarios.map(horario => Number(horario.diaSemana));
-    const uniqueDays = new Set(days);
-
-    if (uniqueDays.size !== days.length) {
-      return 'No puedes repetir días en el horario.';
-    }
-
     const invalidTime = horarios.some(horario => horario.horaCierre <= horario.horaApertura);
     if (invalidTime) {
       return 'La hora de cierre debe ser posterior a la hora de apertura.';
