@@ -1,7 +1,10 @@
 <div class="admin-layout">
 
   <aside class="admin-sidebar">
-    <h2>miBarrio</h2>
+    <a class="admin-sidebar__brand" routerLink="/">
+      <img src="/images/miBarrio_logo.png" alt="" aria-hidden="true">
+      <span>miBarrio</span>
+    </a>
 
     <nav>
       <a routerLink="/admin" routerLinkActive="admin-sidebar__link--active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>

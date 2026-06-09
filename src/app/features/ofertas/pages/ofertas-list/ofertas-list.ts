@@ -140,21 +140,21 @@ export class OfertasList implements OnInit {
   }
 
   private hydrateOfertaCategory(oferta: Oferta, comercios: Comercio[], categorias: Categoria[]): Oferta {
-    if (oferta.categoria?.trim()) {
-      return oferta;
-    }
-
     const comercioId = oferta.comercioId ?? oferta.comercio_id;
     const comercio = comercios.find((item) => item.id === comercioId);
-    const categoriaNombre = this.resolveComercioCategoryName(comercio, categorias);
+    const categoriaNombre = oferta.categoria?.trim() || this.resolveComercioCategoryName(comercio, categorias);
+    const comercioImagenUrl = oferta.comercioImagenUrl
+      ?? oferta.comercio_imagen_url
+      ?? comercio?.imagenUrl;
 
-    if (!categoriaNombre) {
+    if (!categoriaNombre && !comercioImagenUrl) {
       return oferta;
     }
 
     return {
       ...oferta,
-      categoria: categoriaNombre
+      categoria: categoriaNombre || oferta.categoria,
+      comercioImagenUrl
     };
   }
 
