@@ -5,6 +5,12 @@ import { retry } from 'rxjs';
 import { Api } from '../../../../core/services/api';
 import { Comercio, Horario } from '../../../../core/models/comercio.model';
 
+interface HorarioDia {
+  diaSemana: number;
+  dia: string;
+  franjas: string[];
+}
+
 @Component({
   selector: 'app-comercio-detail',
   imports: [RouterLink],
@@ -58,7 +64,38 @@ export class ComercioDetail implements OnInit {
 
   get horarios(): Horario[] {
     return [...(this.comercio?.horarios ?? [])]
-      .sort((a, b) => (a.diaSemana ?? 99) - (b.diaSemana ?? 99));
+      .sort((a, b) => {
+        const dayDiff = (a.diaSemana ?? 99) - (b.diaSemana ?? 99);
+
+        if (dayDiff !== 0) {
+          return dayDiff;
+        }
+
+        return (a.horaApertura ?? '').localeCompare(b.horaApertura ?? '');
+      });
+  }
+
+  get horariosAgrupados(): HorarioDia[] {
+    const grouped = new Map<number, HorarioDia>();
+
+    this.horarios.forEach((horario) => {
+      const diaSemana = horario.diaSemana ?? 0;
+
+      if (!grouped.has(diaSemana)) {
+        grouped.set(diaSemana, {
+          diaSemana,
+          dia: this.formatDiaSemana(diaSemana),
+          franjas: []
+        });
+      }
+
+      grouped.get(diaSemana)?.franjas.push(
+        `${this.formatHora(horario.horaApertura)} - ${this.formatHora(horario.horaCierre)}`
+      );
+    });
+
+    return Array.from(grouped.values())
+      .sort((a, b) => a.diaSemana - b.diaSemana);
   }
 
   formatDiaSemana(diaSemana?: number): string {

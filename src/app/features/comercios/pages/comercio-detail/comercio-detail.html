@@ -55,12 +55,12 @@
         <div class="comercio-detail__hours">
           <h3>Horario</h3>
 
-          @if (horarios.length > 0) {
+          @if (horariosAgrupados.length > 0) {
             <ul>
-              @for (horario of horarios; track horario.id) {
+              @for (horario of horariosAgrupados; track horario.diaSemana) {
                 <li>
-                  <span>{{ formatDiaSemana(horario.diaSemana) }}</span>
-                  <strong>{{ formatHora(horario.horaApertura) }} - {{ formatHora(horario.horaCierre) }}</strong>
+                  <span>{{ horario.dia }}</span>
+                  <strong>{{ horario.franjas.join(' / ') }}</strong>
                 </li>
               }
             </ul>
