@@ -15,6 +15,8 @@ export class OffersSection implements OnInit {
   ofertas: Oferta[] = [];
   loading = true;
   error = false;
+  private readonly daysBeforeEndingSoon = 2;
+  private readonly millisecondsPerDay = 24 * 60 * 60 * 1000;
 
   constructor(
     private api: Api,
@@ -39,5 +41,50 @@ export class OffersSection implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     });
+  }
+
+  getOfferBadge(oferta: Oferta): string {
+    const daysUntilEnd = this.getDaysUntilEnd(oferta.fechaFin);
+
+    if (daysUntilEnd === null) {
+      return 'Promoción activa';
+    }
+
+    if (daysUntilEnd <= this.daysBeforeEndingSoon) {
+      return 'Acaba pronto';
+    }
+
+    return `Hasta ${this.formatDate(oferta.fechaFin)}`;
+  }
+
+  isEndingSoon(oferta: Oferta): boolean {
+    const daysUntilEnd = this.getDaysUntilEnd(oferta.fechaFin);
+
+    return daysUntilEnd !== null && daysUntilEnd <= this.daysBeforeEndingSoon;
+  }
+
+  private getDaysUntilEnd(fechaFin?: string): number | null {
+    if (!fechaFin) {
+      return null;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const endDate = new Date(`${fechaFin}T00:00:00`);
+    endDate.setHours(0, 0, 0, 0);
+
+    return Math.ceil((endDate.getTime() - today.getTime()) / this.millisecondsPerDay);
+  }
+
+  private formatDate(fechaFin?: string): string {
+    if (!fechaFin) {
+      return '';
+    }
+
+    return new Intl.DateTimeFormat('es-ES', {
+      day: 'numeric',
+      month: 'short',
+    }).format(new Date(`${fechaFin}T00:00:00`));
   }
 }

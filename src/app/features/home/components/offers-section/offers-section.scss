@@ -80,6 +80,22 @@
     }
 }
 
+.offer-card__badge {
+    align-self: flex-start;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.offer-card__badge--urgent {
+    background: #fef3c7;
+    color: #92400e;
+}
+
 .offer-card__button {
     margin-top: auto;
     display: flex;

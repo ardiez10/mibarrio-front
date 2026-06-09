@@ -10,13 +10,20 @@ import { Oferta } from '../models/oferta.model';
 import { Categoria } from '../models/categoria.model';
 import { Usuario } from '../models/usuario.model';
 
+declare global {
+  interface Window {
+    __env?: {
+      API_URL?: string;
+    };
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class Api {
   
-  private readonly API_URL = 'http://localhost:8080/api';
+  private readonly API_URL = window.__env?.API_URL || 'http://localhost:8080/api';
   
   constructor(private http: HttpClient) {}
 

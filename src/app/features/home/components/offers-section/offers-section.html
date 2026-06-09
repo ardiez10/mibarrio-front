@@ -18,7 +18,9 @@
     } @else {
       @for (oferta of ofertas; track oferta.id) {
       <article class="offer-card">
-        <span class="offer-card__badge">Abierta</span>
+        <span class="offer-card__badge" [class.offer-card__badge--urgent]="isEndingSoon(oferta)">
+          {{ getOfferBadge(oferta) }}
+        </span>
 
         <h3>{{ oferta.titulo }}</h3>
 
