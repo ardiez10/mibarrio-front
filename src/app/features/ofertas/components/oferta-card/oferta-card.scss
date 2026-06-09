@@ -1,4 +1,7 @@
 .oferta-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 1rem;
@@ -13,7 +16,9 @@
 }
 
 .oferta-card__image {
-  height: clamp(6rem, 15vw, 8.5rem);
+  height: 8.5rem;
+  max-height: 8.5rem;
+  flex: 0 0 8.5rem;
   overflow: hidden;
   background: #dbeafe;
 
@@ -26,6 +31,9 @@
 }
 
 .oferta-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 1rem 1rem 0.9rem;
 
   h3 {
@@ -70,7 +78,7 @@
 }
 
 .oferta-card__button {
-  margin-top: 0.9rem;
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,6 +101,8 @@
 @media (max-width: 90rem) {
   .oferta-card__image {
     height: 7.75rem;
+    max-height: 7.75rem;
+    flex-basis: 7.75rem;
   }
 
   .oferta-card__content {
@@ -105,6 +115,6 @@
 
   .oferta-card__button {
     height: 2.65rem;
-    margin-top: 0.8rem;
+    margin-top: auto;
   }
 }
