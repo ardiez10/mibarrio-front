@@ -29,8 +29,8 @@ export class Categories {
       name: 'Servicios'
     },
     {
-      icon: 'storefront',
-      name: 'Comercio'
+      icon: 'local_pharmacy',
+      name: 'Salud'
     }
   ];
 }

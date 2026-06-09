@@ -14,8 +14,8 @@
 
 .category-card {
   display: block;
-  min-height: 8.75rem;
-  padding: 1.5rem 1.25rem;
+  min-height: 7.5rem;
+  padding: 1.15rem 1.25rem;
   border-radius: 1rem;
   background: white;
   text-align: center;
@@ -32,9 +32,9 @@
 }
 
 .category-card__icon {
-  width: 3.75rem;
-  height: 3.75rem;
-  margin: 0 auto 1rem;
+  width: 3.35rem;
+  height: 3.35rem;
+  margin: 0 auto 0.7rem;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -43,10 +43,10 @@
   color: #2563eb;
 
   mat-icon {
-    width: 2rem;
-    height: 2rem;
-    font-size: 2rem;
-    line-height: 2rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1.75rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -67,14 +67,14 @@
   }
 
   .category-card {
-    min-height: 7rem;
-    padding: 1rem 0.9rem;
+    min-height: 6.5rem;
+    padding: 0.9rem;
   }
 
   .category-card__icon {
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: 0.7rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-bottom: 0.55rem;
 
     mat-icon {
       width: 1.6rem;
@@ -97,7 +97,7 @@
   }
 
   .category-card {
-    min-height: 8.25rem;
-    padding: 1.25rem 1rem;
+    min-height: 7rem;
+    padding: 1rem;
   }
 }
