@@ -16,7 +16,7 @@
 
     <div class="oferta-detail__hero">
       <img
-        [src]="oferta.imagen_url || '/images/comercio-placeholder.png'"
+        [src]="imageUrl"
         [alt]="oferta.titulo"
         (error)="setFallbackImage($event)">
     </div>

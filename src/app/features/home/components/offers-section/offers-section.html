@@ -18,6 +18,13 @@
     } @else {
       @for (oferta of ofertas; track oferta.id) {
       <article class="offer-card">
+        <div class="offer-card__image">
+          <img
+            [src]="getOfferImage(oferta)"
+            [alt]="oferta.titulo"
+            (error)="setFallbackImage($event)">
+        </div>
+
         <span class="offer-card__badge" [class.offer-card__badge--urgent]="isEndingSoon(oferta)">
           {{ getOfferBadge(oferta) }}
         </span>

@@ -63,6 +63,18 @@ export class OffersSection implements OnInit {
     return daysUntilEnd !== null && daysUntilEnd <= this.daysBeforeEndingSoon;
   }
 
+  getOfferImage(oferta: Oferta): string {
+    return oferta.imagenUrl
+      ?? oferta.imagen_url
+      ?? oferta.comercioImagenUrl
+      ?? oferta.comercio_imagen_url
+      ?? '/images/comercio-placeholder.png';
+  }
+
+  setFallbackImage(event: Event): void {
+    (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
+  }
+
   private getDaysUntilEnd(fechaFin?: string): number | null {
     if (!fechaFin) {
       return null;

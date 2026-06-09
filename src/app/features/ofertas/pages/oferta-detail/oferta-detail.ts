@@ -49,6 +49,15 @@ export class OfertaDetail implements OnInit {
     (event.target as HTMLImageElement).src = '/images/comercio-placeholder.png';
   }
 
+  get imageUrl(): string {
+    return this.oferta?.imagenUrl
+      ?? this.oferta?.imagen_url
+      ?? this.oferta?.comercioImagenUrl
+      ?? this.oferta?.comercio_imagen_url
+      ?? this.comercio?.imagenUrl
+      ?? '/images/comercio-placeholder.png';
+  }
+
   get comercioId(): number | undefined {
     return this.oferta?.comercioId ?? this.oferta?.comercio_id;
   }

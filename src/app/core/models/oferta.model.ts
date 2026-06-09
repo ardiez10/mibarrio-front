@@ -15,5 +15,7 @@ export interface Oferta {
 
   comercioNombre?: string;
   comercio_nombre?: string;
+  comercioImagenUrl?: string;
+  comercio_imagen_url?: string;
   categoria?: string;
 }
