@@ -20,6 +20,28 @@ html {
   );
 }
 
+:root {
+  --app-page-bg: #f8fafc;
+  --app-section-bg: #eef3f8;
+  --app-surface: #ffffff;
+  --app-surface-soft: #f1f6fb;
+  --app-border: #d8e2ee;
+  --app-text: #111827;
+  --app-muted: #6b7280;
+  --app-link: #2563eb;
+}
+
+:root.theme-dark {
+  --app-page-bg: #0b1220;
+  --app-section-bg: #101a2d;
+  --app-surface: #111827;
+  --app-surface-soft: #142033;
+  --app-border: #273449;
+  --app-text: #f8fafc;
+  --app-muted: #cbd5e1;
+  --app-link: #93c5fd;
+}
+
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
@@ -29,8 +51,8 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
+  background-color: var(--app-page-bg);
+  color: var(--app-text);
   font: var(--mat-sys-body-medium);
 
   // Reset the user agent margin.
@@ -38,3 +60,88 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+.theme-dark {
+  color-scheme: dark;
+}
+
+.theme-dark .navbar,
+.theme-dark .mobile-menu,
+.theme-dark .admin-topbar {
+  background: var(--app-surface-soft);
+  border-color: var(--app-border);
+}
+
+.theme-dark .navbar__brand,
+.theme-dark .navbar__links a,
+.theme-dark .navbar__signup,
+.theme-dark .mobile-menu a,
+.theme-dark .mobile-menu button,
+.theme-dark .admin-topbar h1 {
+  color: var(--app-text);
+}
+
+.theme-dark .navbar__links a:hover,
+.theme-dark .navbar__signup:hover,
+.theme-dark .navbar__login--secondary:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.theme-dark .navbar__login--secondary {
+  background: #273449;
+  color: #f8fafc;
+}
+
+.theme-dark .hero,
+.theme-dark .home-page,
+.theme-dark .news,
+.theme-dark .offers,
+.theme-dark .noticias-page,
+.theme-dark .comercios-page,
+.theme-dark .ofertas-page,
+.theme-dark .admin-layout {
+  background: var(--app-page-bg);
+}
+
+.theme-dark .news {
+  background: var(--app-section-bg);
+  border-color: var(--app-border);
+}
+
+.theme-dark .section-kicker,
+.theme-dark .navbar__place,
+.theme-dark .news-card span,
+.theme-dark .offer-card__badge,
+.theme-dark a {
+  color: var(--app-link);
+}
+
+.theme-dark .section-header h2,
+.theme-dark .news-card h3,
+.theme-dark .offer-card h3,
+.theme-dark .category-card p,
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3 {
+  color: var(--app-text);
+}
+
+.theme-dark .news-card,
+.theme-dark .offer-card,
+.theme-dark .category-card,
+.theme-dark .home-section-state,
+.theme-dark .legal-page__card,
+.theme-dark .admin-card,
+.theme-dark .admin-table,
+.theme-dark .commerce-card {
+  background: var(--app-surface);
+  border-color: var(--app-border);
+  color: var(--app-text);
+}
+
+.theme-dark p,
+.theme-dark .offer-card p,
+.theme-dark .home-section-state {
+  color: var(--app-muted);
+}

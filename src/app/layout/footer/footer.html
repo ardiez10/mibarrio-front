@@ -9,9 +9,17 @@
       <a routerLink="/aviso-legal">Aviso legal</a>
       <a routerLink="/privacidad">Privacidad</a>
       <a routerLink="/cookies">Cookies</a>
+      <a routerLink="/ayuda">Ayuda</a>
     </nav>
 
     <div class="footer__meta">
+      <button
+        class="footer__theme-toggle"
+        type="button"
+        (click)="toggleTheme()"
+        [attr.aria-pressed]="isDarkMode">
+        {{ isDarkMode ? 'Modo claro' : 'Modo oscuro' }}
+      </button>
       <p>© 2026 {{ branding.appName }}</p>
     </div>
   </div>

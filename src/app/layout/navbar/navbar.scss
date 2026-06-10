@@ -1,6 +1,7 @@
 .navbar {
-  border-bottom: 1px solid #e5e7eb;
-  background: #ffffff;
+  border-bottom: 1px solid #d8e2ee;
+  background: #f1f6fb;
+  box-shadow: 0 0.35rem 1rem rgba(15, 23, 42, 0.04);
 }
 
 .navbar__inner {
@@ -158,8 +159,8 @@
   .mobile-menu {
     display: none;
     padding: 16px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    background: #ffffff;
+    border-bottom: 1px solid #d8e2ee;
+    background: #f1f6fb;
 
     a {
       display: block;

@@ -12,6 +12,7 @@ import { ComercioDetail } from './features/comercios/pages/comercio-detail/comer
 import { ComerciosList } from './features/comercios/pages/comercios-list/comercios-list';
 import { Home } from './features/home/pages/home/home';
 import { AvisoLegal } from './features/legal/pages/aviso-legal/aviso-legal';
+import { Ayuda } from './features/legal/pages/ayuda/ayuda';
 import { Cookies } from './features/legal/pages/cookies/cookies';
 import { Privacidad } from './features/legal/pages/privacidad/privacidad';
 import { NoticiaDetail } from './features/noticias/pages/noticia-detail/noticia-detail';
@@ -73,6 +74,10 @@ export const routes: Routes = [
             {
                 path: 'cookies',
                 component: Cookies
+            },
+            {
+                path: 'ayuda',
+                component: Ayuda
             }
         ]
     },
