@@ -1,6 +1,6 @@
 .categories {
   padding: 0 clamp(1.5rem, 4vw, 3rem) 4rem;
-  background: #f8fbff;
+  background: transparent;
   border-bottom: 1px solid #e8eef6;
 }
 
@@ -24,7 +24,7 @@
   text-align: center;
   text-decoration: none;
   border: 1px solid #e5e7eb;
-  box-shadow: 0 0.125rem 0.5rem rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {

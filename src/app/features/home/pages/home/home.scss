@@ -1,3 +1,11 @@
+:host {
+  display: block;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(248, 251, 255, 0.9) 48%, #f8fafc 100%),
+    url('/images/fondo_home_light.png') top center / min(100%, 104.5rem) auto no-repeat,
+    #f8fafc;
+}
+
 .home-cta {
   padding: 2.5rem clamp(1.5rem, 4vw, 3rem) 4rem;
   background: linear-gradient(180deg, #f8fafc 0%, #f2f6fb 100%);

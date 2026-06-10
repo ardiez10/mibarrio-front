@@ -416,3 +416,21 @@ html.theme-dark body .status--closed {
   background: #fee2e2 !important;
   color: #991b1b !important;
 }
+
+html.theme-dark body app-home {
+  display: block;
+  background:
+    linear-gradient(180deg, rgba(8, 17, 31, 0.84) 0%, rgba(8, 17, 31, 0.9) 48%, var(--app-page-bg) 100%),
+    url('/images/fodo_home_dark.png') top center / min(100%, 104.5rem) auto no-repeat,
+    var(--app-page-bg) !important;
+}
+
+html.theme-dark body app-home .hero,
+html.theme-dark body app-home .categories {
+  background: transparent !important;
+}
+
+html.theme-dark body app-home .hero__search input {
+  background: rgba(11, 18, 32, 0.92) !important;
+  box-shadow: 0 1rem 2.25rem rgba(0, 0, 0, 0.22) !important;
+}

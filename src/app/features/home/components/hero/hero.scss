@@ -1,8 +1,6 @@
 .hero {
     padding: clamp(3.5rem, 7vw, 5rem) clamp(1.5rem, 4vw, 3rem);
-    background: linear-gradient(180deg,
-            #ffffff 0%,
-            #f8fbff 100%);
+    background: transparent;
 }
 
 .hero__content {
@@ -56,6 +54,8 @@
 
     border-radius: 12px;
     border: 1px solid #d1d5db;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 1rem 2.25rem rgba(15, 23, 42, 0.08);
 
     font-size: 1rem;
 }
