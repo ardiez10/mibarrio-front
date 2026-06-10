@@ -61,14 +61,17 @@
 }
 
 .footer__theme-toggle {
-  border: 1px solid rgba(249, 250, 251, 0.28);
+  position: relative;
+  width: 4.35rem;
+  height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(249, 250, 251, 0.32);
   border-radius: 999px;
-  padding: 0.55rem 0.85rem;
+  padding: 0 0.45rem;
   background: rgba(249, 250, 251, 0.08);
   color: #f9fafb;
-  font: inherit;
-  font-size: 0.9rem;
-  font-weight: 700;
   cursor: pointer;
   transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 
@@ -77,6 +80,49 @@
     border-color: rgba(249, 250, 251, 0.5);
     background: rgba(249, 250, 251, 0.14);
   }
+}
+
+.footer__theme-toggle--dark {
+  background: rgba(147, 197, 253, 0.18);
+
+  .footer__theme-thumb {
+    transform: translateX(1.95rem);
+  }
+}
+
+.footer__theme-icon {
+  position: relative;
+  z-index: 1;
+  width: 1.05rem;
+  height: 1.05rem;
+  display: inline-flex;
+  color: rgba(249, 250, 251, 0.9);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+}
+
+.footer__theme-icon--moon svg {
+  fill: currentColor;
+  stroke-width: 0;
+}
+
+.footer__theme-thumb {
+  position: absolute;
+  left: 0.28rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease;
 }
 
 @media (max-width: 64rem) {

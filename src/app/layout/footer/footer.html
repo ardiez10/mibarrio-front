@@ -15,10 +15,23 @@
     <div class="footer__meta">
       <button
         class="footer__theme-toggle"
+        [class.footer__theme-toggle--dark]="isDarkMode"
         type="button"
         (click)="toggleTheme()"
+        [attr.aria-label]="isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'"
         [attr.aria-pressed]="isDarkMode">
-        {{ isDarkMode ? 'Modo claro' : 'Modo oscuro' }}
+        <span class="footer__theme-icon footer__theme-icon--sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+          </svg>
+        </span>
+        <span class="footer__theme-thumb" aria-hidden="true"></span>
+        <span class="footer__theme-icon footer__theme-icon--moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M21 14.4A8.2 8.2 0 0 1 9.6 3 7.8 7.8 0 1 0 21 14.4Z"></path>
+          </svg>
+        </span>
       </button>
       <p>© 2026 {{ branding.appName }}</p>
     </div>

@@ -32,11 +32,11 @@ html {
 }
 
 :root.theme-dark {
-  --app-page-bg: #0b1220;
-  --app-section-bg: #101a2d;
-  --app-surface: #111827;
-  --app-surface-soft: #142033;
-  --app-border: #273449;
+  --app-page-bg: #08111f;
+  --app-section-bg: #0d1828;
+  --app-surface: #111c2d;
+  --app-surface-soft: #132033;
+  --app-border: #2a3a52;
   --app-text: #f8fafc;
   --app-muted: #cbd5e1;
   --app-link: #93c5fd;
@@ -65,83 +65,162 @@ body {
   color-scheme: dark;
 }
 
-.theme-dark .navbar,
-.theme-dark .mobile-menu,
-.theme-dark .admin-topbar {
+html.theme-dark body {
+  background: var(--app-page-bg);
+  color: var(--app-text);
+}
+
+html.theme-dark body .navbar,
+html.theme-dark body .mobile-menu,
+html.theme-dark body .admin-topbar {
   background: var(--app-surface-soft);
   border-color: var(--app-border);
 }
 
-.theme-dark .navbar__brand,
-.theme-dark .navbar__links a,
-.theme-dark .navbar__signup,
-.theme-dark .mobile-menu a,
-.theme-dark .mobile-menu button,
-.theme-dark .admin-topbar h1 {
+html.theme-dark body .navbar__brand,
+html.theme-dark body .navbar__links a,
+html.theme-dark body .navbar__signup,
+html.theme-dark body .mobile-menu a,
+html.theme-dark body .mobile-menu button,
+html.theme-dark body .admin-topbar h1 {
   color: var(--app-text);
 }
 
-.theme-dark .navbar__links a:hover,
-.theme-dark .navbar__signup:hover,
-.theme-dark .navbar__login--secondary:hover {
+html.theme-dark body .navbar__links a:hover,
+html.theme-dark body .navbar__signup:hover,
+html.theme-dark body .navbar__login--secondary:hover {
   background: #1e293b;
   color: #ffffff;
 }
 
-.theme-dark .navbar__login--secondary {
+html.theme-dark body .navbar__login--secondary {
   background: #273449;
   color: #f8fafc;
 }
 
-.theme-dark .hero,
-.theme-dark .home-page,
-.theme-dark .news,
-.theme-dark .offers,
-.theme-dark .noticias-page,
-.theme-dark .comercios-page,
-.theme-dark .ofertas-page,
-.theme-dark .admin-layout {
+html.theme-dark body .hero,
+html.theme-dark body .categories,
+html.theme-dark body .home-cta,
+html.theme-dark body .home-page,
+html.theme-dark body .news,
+html.theme-dark body .offers,
+html.theme-dark body .noticia-detail,
+html.theme-dark body .noticias-page,
+html.theme-dark body .comercio-detail,
+html.theme-dark body .comercios-page,
+html.theme-dark body .oferta-detail,
+html.theme-dark body .ofertas-page,
+html.theme-dark body .auth-page,
+html.theme-dark body .legal-page,
+html.theme-dark body .admin-layout,
+html.theme-dark body .admin-content {
   background: var(--app-page-bg);
 }
 
-.theme-dark .news {
+html.theme-dark body .hero {
+  background: linear-gradient(180deg, #101a2d 0%, #08111f 100%);
+}
+
+html.theme-dark body .home-cta,
+html.theme-dark body .offers,
+html.theme-dark body .news,
+html.theme-dark body .categories {
   background: var(--app-section-bg);
   border-color: var(--app-border);
 }
 
-.theme-dark .section-kicker,
-.theme-dark .navbar__place,
-.theme-dark .news-card span,
-.theme-dark .offer-card__badge,
-.theme-dark a {
+html.theme-dark body .home-cta__content {
+  background: linear-gradient(135deg, #172554 0%, #0f172a 100%);
+}
+
+html.theme-dark body .section-kicker,
+html.theme-dark body .hero__badge,
+html.theme-dark body .navbar__place,
+html.theme-dark body .news-card span,
+html.theme-dark body .offer-card__badge,
+html.theme-dark body .legal-page__kicker,
+html.theme-dark body a {
   color: var(--app-link);
 }
 
-.theme-dark .section-header h2,
-.theme-dark .news-card h3,
-.theme-dark .offer-card h3,
-.theme-dark .category-card p,
-.theme-dark h1,
-.theme-dark h2,
-.theme-dark h3 {
+html.theme-dark body .hero__badge,
+html.theme-dark body .category-card__icon {
+  background: #1e3a5f;
+}
+
+html.theme-dark body .section-header h2,
+html.theme-dark body .hero h1,
+html.theme-dark body .news-card h3,
+html.theme-dark body .offer-card h3,
+html.theme-dark body .category-card p,
+html.theme-dark body .noticia-card h3,
+html.theme-dark body .oferta-card h3,
+html.theme-dark body .comercio-card h3,
+html.theme-dark body .dashboard-card strong,
+html.theme-dark body .dashboard__header h2,
+html.theme-dark body .dashboard__pending-header h3,
+html.theme-dark body .pending-user strong,
+html.theme-dark body h1,
+html.theme-dark body h2,
+html.theme-dark body h3 {
   color: var(--app-text);
 }
 
-.theme-dark .news-card,
-.theme-dark .offer-card,
-.theme-dark .category-card,
-.theme-dark .home-section-state,
-.theme-dark .legal-page__card,
-.theme-dark .admin-card,
-.theme-dark .admin-table,
-.theme-dark .commerce-card {
+html.theme-dark body .news-card,
+html.theme-dark body .offer-card,
+html.theme-dark body .oferta-card,
+html.theme-dark body .noticia-card,
+html.theme-dark body .comercio-card,
+html.theme-dark body .category-card,
+html.theme-dark body .home-section-state,
+html.theme-dark body .legal-page__inner,
+html.theme-dark body .auth-card,
+html.theme-dark body .admin-card,
+html.theme-dark body .admin-table,
+html.theme-dark body .admin-table-page,
+html.theme-dark body .admin-ofertas-form,
+html.theme-dark body .dashboard-card,
+html.theme-dark body .dashboard__pending,
+html.theme-dark body .pending-user {
   background: var(--app-surface);
   border-color: var(--app-border);
   color: var(--app-text);
 }
 
-.theme-dark p,
-.theme-dark .offer-card p,
-.theme-dark .home-section-state {
+html.theme-dark body input,
+html.theme-dark body select,
+html.theme-dark body textarea {
+  background: #0f172a;
+  border-color: var(--app-border);
+  color: var(--app-text);
+}
+
+html.theme-dark body input::placeholder,
+html.theme-dark body textarea::placeholder {
+  color: #94a3b8;
+}
+
+html.theme-dark body p,
+html.theme-dark body .hero p,
+html.theme-dark body .offer-card p,
+html.theme-dark body .noticia-card p,
+html.theme-dark body .oferta-card p,
+html.theme-dark body .comercio-card p,
+html.theme-dark body .dashboard-card span,
+html.theme-dark body .dashboard-card p,
+html.theme-dark body .dashboard__header p,
+html.theme-dark body .dashboard__pending-header p,
+html.theme-dark body .pending-user p,
+html.theme-dark body .home-section-state,
+html.theme-dark body .legal-page__intro,
+html.theme-dark body .legal-page__content {
   color: var(--app-muted);
+}
+
+html.theme-dark body .offer-card__button,
+html.theme-dark body .navbar__login,
+html.theme-dark body .hero__search button,
+html.theme-dark body .admin-topbar__logout {
+  background: #2563eb;
+  color: #ffffff;
 }
