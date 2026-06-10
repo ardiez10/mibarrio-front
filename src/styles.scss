@@ -420,7 +420,8 @@ html.theme-dark body .status--closed {
 html.theme-dark body app-home {
   display: block;
   background:
-    linear-gradient(180deg, rgba(8, 17, 31, 0.84) 0%, rgba(8, 17, 31, 0.9) 48%, var(--app-page-bg) 100%),
+    linear-gradient(90deg, #08111f 0%, rgba(8, 17, 31, 0.24) 16%, rgba(8, 17, 31, 0.24) 84%, #08111f 100%),
+    linear-gradient(180deg, rgba(8, 17, 31, 0.58) 0%, rgba(8, 17, 31, 0.66) 52%, var(--app-page-bg) 100%),
     url('/images/fodo_home_dark.png') top center / min(100%, 104.5rem) auto no-repeat,
     var(--app-page-bg) !important;
 }
