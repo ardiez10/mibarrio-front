@@ -1,6 +1,7 @@
 .footer {
   background: #111827;
   color: #f9fafb;
+  border-top: 1px solid rgba(216, 226, 238, 0.12);
 }
 
 .footer__inner {
@@ -9,7 +10,7 @@
   padding: 2.5rem clamp(1rem, 3vw, 2rem);
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) auto auto;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   gap: 3rem;
   box-sizing: border-box;
@@ -49,8 +50,9 @@
 }
 
 .footer__meta {
-  display: grid;
-  gap: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   justify-items: end;
 
   p {
@@ -140,6 +142,8 @@
   }
 
   .footer__meta {
+    flex-direction: column;
+    align-items: flex-start;
     justify-items: start;
   }
 }
@@ -155,6 +159,7 @@
   }
 
   .footer__meta {
+    align-items: center;
     justify-items: center;
   }
 }

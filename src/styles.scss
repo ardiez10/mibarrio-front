@@ -244,13 +244,12 @@ html.theme-dark body {
 html.theme-dark body .navbar,
 html.theme-dark body .mobile-menu,
 html.theme-dark body .admin-topbar {
-  background: #0f1b2d !important;
+  background: var(--app-surface-soft) !important;
   border-color: var(--app-border) !important;
 }
 
 html.theme-dark body .navbar__brand,
 html.theme-dark body .navbar__logo,
-html.theme-dark body .navbar__links a,
 html.theme-dark body .navbar__signup,
 html.theme-dark body .navbar__place,
 html.theme-dark body .mobile-menu a,
@@ -258,6 +257,17 @@ html.theme-dark body .mobile-menu button,
 html.theme-dark body .admin-topbar h1 {
   color: var(--app-text) !important;
   opacity: 1 !important;
+}
+
+html.theme-dark body .navbar__links a {
+  color: #bfdbfe !important;
+  opacity: 1 !important;
+}
+
+html.theme-dark body .navbar__links a:hover,
+html.theme-dark body .navbar__links a.router-link-active {
+  background: #1f2d44 !important;
+  color: #f8fafc !important;
 }
 
 html.theme-dark body .navbar__place,
@@ -405,6 +415,50 @@ html.theme-dark body .admin-topbar__logout {
 html.theme-dark body .navbar__login--secondary {
   background: #1f2d44 !important;
   color: #f8fafc !important;
+}
+
+html.theme-dark body .footer {
+  background: #060d18 !important;
+  border-top: 1px solid var(--app-border) !important;
+  color: var(--app-text) !important;
+}
+
+html.theme-dark body .footer__brand p,
+html.theme-dark body .footer__meta p {
+  color: #cbd5e1 !important;
+}
+
+html.theme-dark body .footer__links a {
+  color: #bfdbfe !important;
+}
+
+html.theme-dark body .footer__links a:hover {
+  color: #f8fafc !important;
+}
+
+html.theme-dark body .footer__theme-toggle {
+  border-color: #64748b !important;
+  background: #132033 !important;
+  color: #bfdbfe !important;
+}
+
+html.theme-dark body .comercio-detail__sidebar {
+  background: var(--app-surface) !important;
+  border-color: var(--app-border) !important;
+}
+
+html.theme-dark body .comercio-detail__sidebar h3,
+html.theme-dark body .comercio-detail__hours strong {
+  color: var(--app-text) !important;
+}
+
+html.theme-dark body .comercio-detail__sidebar p,
+html.theme-dark body .comercio-detail__hours li {
+  color: var(--app-muted) !important;
+}
+
+html.theme-dark body .comercio-detail__hours {
+  border-color: var(--app-border) !important;
 }
 
 html.theme-dark body .status {

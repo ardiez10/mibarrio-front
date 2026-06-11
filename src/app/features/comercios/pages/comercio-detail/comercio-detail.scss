@@ -1,5 +1,5 @@
 .comercio-detail {
-  max-width: 68rem;
+  max-width: 74rem;
   margin-inline: auto;
   padding: clamp(1.75rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem);
 }
@@ -29,7 +29,7 @@
 
 .comercio-detail__content {
   display: grid;
-  grid-template-columns: 1fr 17rem;
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, 23rem);
   gap: 1.5rem;
 }
 
@@ -84,22 +84,160 @@
   }
 
   li {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 6.75rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.8rem;
     color: #6b7280;
   }
 
   strong {
     color: #111827;
     text-align: right;
+    white-space: nowrap;
+  }
+}
+
+.comercio-detail__offers {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--app-border, #e5e7eb);
+}
+
+.comercio-detail__offers-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin: 0.35rem 0 0;
+    color: var(--app-text, #111827);
+    font-size: clamp(1.55rem, 3vw, 2.1rem);
+    line-height: 1.08;
+  }
+
+  a {
+    color: #2563eb;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+.comercio-detail__offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.comercio-offer-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--app-border, #e5e7eb);
+  border-radius: 1rem;
+  background: var(--app-surface, #ffffff);
+  box-shadow: 0 0.125rem 0.5rem rgba(15, 23, 42, 0.05);
+}
+
+.comercio-offer-card__image {
+  height: 8.25rem;
+  flex: 0 0 8.25rem;
+  overflow: hidden;
+  background: #dbeafe;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+.comercio-offer-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  h3 {
+    margin: 0.7rem 0 0.4rem;
+    color: var(--app-text, #111827);
+    font-size: 1.35rem;
+    line-height: 1.1;
+  }
+
+  p {
+    margin: 0;
+    color: var(--app-muted, #6b7280);
+    line-height: 1.4;
+  }
+}
+
+.comercio-offer-card__badge {
+  width: fit-content;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #dff3ff;
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.comercio-offer-card__button {
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  border-radius: 0.85rem;
+  background: #0f172a;
+  color: #ffffff !important;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+
+  &:hover {
+    transform: translateY(-0.1rem);
+    background: #1d4ed8;
+    box-shadow: 0 0.6rem 1.2rem rgba(37, 99, 235, 0.18);
+  }
+}
+
+:host-context(.theme-dark) {
+  .comercio-detail__main h1,
+  .comercio-detail__hours strong,
+  .comercio-detail__sidebar h3,
+  .comercio-detail__offers-header h2,
+  .comercio-offer-card__content h3 {
+    color: var(--app-text, #f8fafc);
+  }
+
+  .comercio-detail__main p,
+  .comercio-detail__sidebar p,
+  .comercio-detail__hours li,
+  .comercio-offer-card__content p {
+    color: var(--app-muted, #cbd5e1);
+  }
+
+  .comercio-detail__sidebar,
+  .comercio-offer-card {
+    background: var(--app-surface, #111c2d);
+    border-color: var(--app-border, #2a3a52);
+  }
+
+  .comercio-offer-card__button {
+    background: #2563eb;
+    color: #ffffff !important;
   }
 }
 
 @media (max-width: 90rem) {
   .comercio-detail {
-    max-width: 62rem;
+    max-width: 68rem;
     padding: 1.5rem 1.5rem 2.5rem;
   }
 
@@ -108,7 +246,7 @@
   }
 
   .comercio-detail__content {
-    grid-template-columns: 1fr 15rem;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 21rem);
     gap: 1.25rem;
   }
 
@@ -120,5 +258,15 @@
 @media (max-width: 48rem) {
   .comercio-detail__content {
     grid-template-columns: 1fr;
+  }
+
+  .comercio-detail__offers-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .comercio-offer-card__image {
+    height: 10rem;
+    flex-basis: 10rem;
   }
 }

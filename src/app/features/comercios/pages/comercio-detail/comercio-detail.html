@@ -72,6 +72,46 @@
 
     </div>
 
+    @if (ofertasActivas.length > 0) {
+      <section class="comercio-detail__offers">
+        <div class="comercio-detail__offers-header">
+          <div>
+            <span class="section-kicker">Promociones activas</span>
+            <h2>Ofertas de {{ comercio.nombre }}</h2>
+          </div>
+
+          <a routerLink="/ofertas">Ver todas</a>
+        </div>
+
+        <div class="comercio-detail__offers-grid">
+          @for (oferta of ofertasActivas; track oferta.id) {
+            <article class="comercio-offer-card">
+              <div class="comercio-offer-card__image">
+                <img
+                  [src]="getOfertaImage(oferta)"
+                  [alt]="oferta.titulo"
+                  (error)="setFallbackImage($event)">
+              </div>
+
+              <div class="comercio-offer-card__content">
+                <span class="comercio-offer-card__badge">
+                  {{ getOfertaBadge(oferta) }}
+                </span>
+
+                <h3>{{ oferta.titulo }}</h3>
+
+                <p>{{ oferta.descripcion }}</p>
+
+                <a class="comercio-offer-card__button" [routerLink]="['/ofertas', oferta.id]">
+                  Ver oferta
+                </a>
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+
   } @else {
 
     <p>No se ha encontrado el comercio.</p>

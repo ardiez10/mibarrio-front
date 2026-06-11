@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 
 import { Auth } from '../../../../core/services/auth';
@@ -40,8 +41,24 @@ export class Login {
       },
       error: (err) => {
         this.loading = false;
-        this.errorMessage = err?.error?.details?.[0] || 'No se ha podido iniciar sesion.';
+        this.errorMessage = this.getLoginErrorMessage(err);
       }
     });
+  }
+
+  private getLoginErrorMessage(error: unknown): string {
+    if (error instanceof HttpErrorResponse) {
+      const backendMessage = error.error?.details?.[0] || error.error?.message || error.error?.error;
+
+      if (error.status === 401 || error.status === 403 || error.status === 404) {
+        return 'No existe una cuenta aprobada con esos datos o todavía está pendiente de revisión.';
+      }
+
+      if (backendMessage) {
+        return backendMessage;
+      }
+    }
+
+    return 'No se ha podido iniciar sesión. Revisa tus datos e inténtalo de nuevo.';
   }
 }
